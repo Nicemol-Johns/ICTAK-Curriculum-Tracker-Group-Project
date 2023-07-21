@@ -24,12 +24,14 @@ input[type="password"] {
 }
 
 button[type="submit"] {
-  padding: 10px 20px;
+  padding: 10px 40px;
   background-color: #4CAF50;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: px;
   cursor: pointer;
+  text-align: center;
+  margin-left: 50px;
 }
 .additional-options {
   margin-top: 10px;

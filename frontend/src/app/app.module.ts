@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AboutUsComponent } from './pages/home/about-us/about-us.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     SignupComponent,
     LoginComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

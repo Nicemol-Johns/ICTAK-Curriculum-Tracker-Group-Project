@@ -22,11 +22,14 @@ router.post("/user-signup",async (req,res)=>{
 
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
-  
-    usersSignupLoginData.findOne({ email, password })
+
+    if(email==="admin@org.in" && password==="admin123"){
+      res.status(200).json({ message: 'Admin Login successful',api:'/dashboard'});
+    }else{
+      usersSignupLoginData.findOne({ email, password })
       .then(user => {
         if (user) {
-          res.status(200).json({ message: 'Login successful' });
+          res.status(200).json({ message: 'Login successful',api:''});
         } else {
           res.status(401).json({ error: 'Invalid username or password' });
         }
@@ -34,6 +37,10 @@ router.post('/login', (req, res) => {
       .catch(error => {
         res.status(500).json({ error: error.message });
       });
+
+    }
+  
+
   });
 
 

@@ -17,7 +17,7 @@ constructor(private router:Router,private authserve:AuthService){ }
 login(){
   this.authserve.login(this.User.email,this.User.password).subscribe(response =>{
     console.log('login successful',response);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate([response.api]);
   })
   
 

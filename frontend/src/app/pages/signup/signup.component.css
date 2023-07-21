@@ -1,0 +1,19 @@
+.form{
+    margin-left: 600px;
+    margin-top: 100px;
+    padding: 10px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+    width: 60%;
+    
+  }
+
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

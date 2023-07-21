@@ -55,7 +55,7 @@
     <div class="form-group">
       <label>Password</label>
 
-      <input type="text" 
+      <input type="password" 
       class="form-control" 
       [(ngModel)]="user.password" 
       required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
@@ -71,7 +71,7 @@
     <div class="form-group">
       <label>Confirm password</label>
 
-      <input type="text" 
+      <input type="password" 
       class="form-control" 
       [(ngModel)]="user.confirm_pwd" 
       name="ConfirmPassword" #confirm="ngModel"

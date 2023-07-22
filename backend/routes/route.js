@@ -22,7 +22,7 @@ router.post("/user-signup",async (req,res)=>{
 
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
-
+    console.log(email,password)
     if(email==="admin@org.in" && password==="admin123"){
       res.status(200).json({ message: 'Admin Login successful',api:'/dashboard'});
     }else{
@@ -85,8 +85,7 @@ router.post('/login', (req, res) => {
   router.delete("/delete-curriculum/:id",async (req,res)=>{
     try {
         let id = req.params.id;
-        console.log(id);
-        res.set('Cache-Control', 'no-store');  
+        console.log(id);  
         let data = await curriculumSchema.findByIdAndRemove(id);
         // res.set('Cache-Control', 'no-store');      
         res.json({data:data,status:200}).status(201);

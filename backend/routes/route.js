@@ -46,6 +46,7 @@ router.post('/login', (req, res) => {
   
   router.get('/fetchCurriculums',async(req,res)=>{
     try {
+      res.set('Cache-Control', 'no-store');   
       let data = await curriculumSchema.find({});
       res.set('Cache-Control', 'no-store');
       console.log(data)
@@ -80,6 +81,19 @@ router.post('/login', (req, res) => {
           console.log(`Cannot POST data`);                               
       }
   })
+
+  router.delete("/delete-curriculum/:id",async (req,res)=>{
+    try {
+        let id = req.params.id;
+        console.log(id);
+        res.set('Cache-Control', 'no-store');  
+        let data = await curriculumSchema.findByIdAndRemove(id);
+        // res.set('Cache-Control', 'no-store');      
+        res.json({data:data,status:200}).status(201);
+    } catch (error) {
+        res.status(400).json({ message: "DELETE request CANNOT be completed" });       
+    }
+})
 
 
 module.exports = router;

@@ -22,6 +22,10 @@ export class CurriculumQueriesService {
     return this.http.put(`http://localhost:3000/curriculum-tracker/editdetails/${id}`, updated);
   }
 
+  deleteCurriculum(id:any){
+    return this.http.delete(`http://localhost:3000/curriculum-tracker/delete-curriculum/${id}`);
+  }
+
 
 
 }

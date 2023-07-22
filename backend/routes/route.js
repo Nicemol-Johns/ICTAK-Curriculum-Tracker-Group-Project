@@ -66,7 +66,20 @@ router.post('/login', (req, res) => {
         res.status(400).json({ message: "GET request CANNOT be completed" });       
       }
       }
-    )                            
+    ) 
+    
+    router.put("/editdetails/:id",async (req,res)=>{                               
+      try{
+          let id = req.params.id;
+          let updateData = {$set: req.body};
+          const updated = await curriculumSchema.findByIdAndUpdate(id,updateData);  
+          res.set('Cache-Control', 'no-store');                            
+          res.status(200).json("UPDATE Successful");                                                                          
+      }catch(error){
+          res.status(400).json("Cannot /UPDATE data");                            
+          console.log(`Cannot POST data`);                               
+      }
+  })
 
 
 module.exports = router;

@@ -23,5 +23,10 @@ export class CurriculumListComponent implements OnInit{
     this.router.navigate(['dashboard/curriculum-list/view/'+id]);
   }
 
+  edit(id:any){
+    this.router.navigate(['dashboard/curriculum-list/edit/'+id]);
+  }
+
+
 
 }

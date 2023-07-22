@@ -10,6 +10,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AboutUsComponent } from './pages/home/about-us/about-us.component';
 import { CurriculumListComponent } from './pages/curriculums/curriculum-list/curriculum-list.component';
 import { ViewComponent } from './pages/curriculums/view/view.component';
+import { EditComponent } from './pages/curriculums/edit/edit.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path:'dashboard',component:DashboardComponent},
   {path:'dashboard/curriculum-list',component:CurriculumListComponent},
   {path:'about-us',component:AboutUsComponent},
-  {path:'dashboard/curriculum-list/view/:id',component:ViewComponent}
+  {path:'dashboard/curriculum-list/view/:id',component:ViewComponent},
+  {path:'dashboard/curriculum-list/edit/:id',component:EditComponent}
 ];
 
 @NgModule({

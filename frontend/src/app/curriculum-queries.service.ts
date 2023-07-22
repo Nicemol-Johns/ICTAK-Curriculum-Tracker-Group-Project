@@ -17,6 +17,11 @@ export class CurriculumQueriesService {
     return this.http.get(`http://localhost:3000/curriculum-tracker/curriculum/${id}`); 
   }
 
+  editDetails(updated:any,id:any) {
+    //console.dir('Data:', updated);
+    return this.http.put(`http://localhost:3000/curriculum-tracker/editdetails/${id}`, updated);
+  }
+
 
 
 }

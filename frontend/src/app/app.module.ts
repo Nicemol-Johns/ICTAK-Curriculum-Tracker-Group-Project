@@ -17,6 +17,7 @@ import { AboutUsComponent } from './pages/home/about-us/about-us.component';
 import { CurriculumListComponent } from './pages/curriculums/curriculum-list/curriculum-list.component';
 import { CurriculumQueriesService } from './curriculum-queries.service';
 import { ViewComponent } from './pages/curriculums/view/view.component';
+import { EditComponent } from './pages/curriculums/edit/edit.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ViewComponent } from './pages/curriculums/view/view.component';
     DashboardComponent,
     AboutUsComponent,
     CurriculumListComponent,
-    ViewComponent
+    ViewComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

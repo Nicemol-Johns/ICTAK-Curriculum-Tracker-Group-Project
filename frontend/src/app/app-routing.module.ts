@@ -8,14 +8,19 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupStatusComponent } from './pages/signup-status/signup-status.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AboutUsComponent } from './pages/home/about-us/about-us.component';
+import { CurriculumListComponent } from './pages/curriculums/curriculum-list/curriculum-list.component';
+import { ViewComponent } from './pages/curriculums/view/view.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'signup',component:SignupComponent},
   {path:'login',component:LoginComponent},
   {path:'signupstatus',component:SignupStatusComponent},
+  //Admin Dashboard
   {path:'dashboard',component:DashboardComponent},
-  {path:'about-us',component:AboutUsComponent}
+  {path:'dashboard/curriculum-list',component:CurriculumListComponent},
+  {path:'about-us',component:AboutUsComponent},
+  {path:'dashboard/curriculum-list/view/:id',component:ViewComponent}
 ];
 
 @NgModule({

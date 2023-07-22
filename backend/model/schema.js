@@ -17,6 +17,20 @@ const SignupSchema = mongoose.Schema({
         required:true
     }
 })
+const CurriculumSchema = mongoose.Schema({
+    name:{
+        type:String,                                                         
+        required:true        
+    },
+    area:{
+        type:String,                                                         
+        required:true            
+    },
+    refernceLink:{
+        type:String,
+        required:true
+    }
+})
 
 // const LoginSchema=mongoose.Schema({
 //     email:{
@@ -34,6 +48,8 @@ const SignupSchema = mongoose.Schema({
 
 // const UserModel=mongoose.model('user',LoginSchema)
 // module.exports=UserModel
+const usersSignupLoginData = mongoose.model('users',SignupSchema);
+const curriculumSchema = mongoose.model('curriculums',CurriculumSchema)
 
-const usersSignupData = mongoose.model('users',SignupSchema);
-module.exports = usersSignupData;
+
+module.exports = {usersSignupLoginData,curriculumSchema};

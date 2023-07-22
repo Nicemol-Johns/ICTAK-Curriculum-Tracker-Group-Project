@@ -13,12 +13,10 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-<<<<<<< HEAD
 import { AboutUsComponent } from './pages/home/about-us/about-us.component';
-=======
-import { AboutUsComponent } from './pages/about-us/about-us.component';
-import { RequirementFormComponent } from './pages/requirement-form/requirement-form.component';
->>>>>>> 04017e2f8cc6d770339aea20ae61cddbb5fddde9
+import { CurriculumListComponent } from './pages/curriculums/curriculum-list/curriculum-list.component';
+import { CurriculumQueriesService } from './curriculum-queries.service';
+import { ViewComponent } from './pages/curriculums/view/view.component';
 
 
 @NgModule({
@@ -32,12 +30,9 @@ import { RequirementFormComponent } from './pages/requirement-form/requirement-f
     LoginComponent,
     HomeComponent,
     DashboardComponent,
-<<<<<<< HEAD
-    AboutUsComponent
-=======
     AboutUsComponent,
-    RequirementFormComponent
->>>>>>> 04017e2f8cc6d770339aea20ae61cddbb5fddde9
+    CurriculumListComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +40,7 @@ import { RequirementFormComponent } from './pages/requirement-form/requirement-f
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,CurriculumQueriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,7 +4,7 @@ const router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
-const usersSignupLoginData=require("../model/schema")
+const { usersSignupLoginData,curriculumSchema }=require("../model/schema")
 
 router.post("/user-signup",async (req,res)=>{                              
     try{
@@ -42,6 +42,31 @@ router.post('/login', (req, res) => {
   
 
   });
+
+  
+  router.get('/fetchCurriculums',async(req,res)=>{
+    try {
+      let data = await curriculumSchema.find({});
+      res.set('Cache-Control', 'no-store');
+      console.log(data)
+      res.json({data:data,status:200}).status(201);
+    } catch (error) {
+      res.status(400).json({ message: "GET request CANNOT be completed" });       
+    }
+    })
+
+    router.get('/curriculum/:id',async(req,res)=>{
+      try {
+        let id = req.params.id;
+        let data = await curriculumSchema.findById(id);
+        res.set('Cache-Control', 'no-store');
+        console.log(data)
+        res.json({data:data,status:200}).status(200);
+      } catch (error) {
+        res.status(400).json({ message: "GET request CANNOT be completed" });       
+      }
+      }
+    )                            
 
 
 module.exports = router;

@@ -31,6 +31,31 @@ const CurriculumSchema = mongoose.Schema({
         required:true
     }
 })
+const RequirementSchema=mongoose.Schema({
+    requirementName:{
+        type:String,
+        required:true
+    },
+    trainingArea:{
+        type:String,
+        required:true,
+        enum: ['FSD', 'ML-AI', 'DSA', 'RPA', 'ST', 'CSA'],
+    },
+    institution:{
+        type:String,
+        required:true
+    },
+    category:{
+        type:String,
+        required:true,
+        enum: ['Retail', 'Academic', 'Corporate', 'Govt'],
+    },
+    trainingHours:{
+        type:Number,
+        required:true
+    },
+
+})
 
 // const LoginSchema=mongoose.Schema({
 //     email:{
@@ -50,6 +75,6 @@ const CurriculumSchema = mongoose.Schema({
 // module.exports=UserModel
 const usersSignupLoginData = mongoose.model('users',SignupSchema);
 const curriculumSchema = mongoose.model('curriculums',CurriculumSchema)
+const requirementSchema =mongoose.model('requirements',RequirementSchema)
 
-
-module.exports = {usersSignupLoginData,curriculumSchema};
+module.exports = {usersSignupLoginData,curriculumSchema,requirementSchema};

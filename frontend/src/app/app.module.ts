@@ -9,7 +9,7 @@ import { CardsComponent } from './pages/home/cards/cards.component';
 import { FooterComponent } from './pages/home/footer/footer.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -19,6 +19,9 @@ import { CurriculumQueriesService } from './curriculum-queries.service';
 import { ViewComponent } from './pages/curriculums/view/view.component';
 import { EditComponent } from './pages/curriculums/edit/edit.component';
 //import { SearchFilterPipe } from './search-filter.pipe';
+import { RequirementformComponent } from './pages/requirementform/requirementform.component';
+import { RequirementlistComponent } from './pages/requirementlist/requirementlist.component';
+import { RequirementformService } from './requirementform.service';
 
 
 @NgModule({
@@ -42,9 +45,10 @@ import { EditComponent } from './pages/curriculums/edit/edit.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthService,CurriculumQueriesService],
+  providers: [AuthService,CurriculumQueriesService,RequirementformService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

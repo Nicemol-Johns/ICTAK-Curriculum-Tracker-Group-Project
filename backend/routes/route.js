@@ -95,4 +95,37 @@ router.post('/login', (req, res) => {
 })
 
 
+
+router.post('/rform', async (req, res) => {
+
+  try {
+      let item = req.body
+      const saveddata = await FormDataData(form); //crosschecking the criteria before saving
+      saveddata.save();
+
+      res.json({message:'success', status: 201}).status(201)
+
+  } catch (error) {
+      console.log(error)
+      res.json({message:'failed', status: 400}).status(400)
+  }
+
+
+})
+
+
+
+router.get('/rlist', async (req, res) => {
+  try {
+
+      let data = await FormDataData.find({})
+      res.json({data:data, status: 200}).status(200)
+
+  } catch (error) {
+      console.log(error)
+      res.send('error')
+  }
+})
+
+
 module.exports = router;

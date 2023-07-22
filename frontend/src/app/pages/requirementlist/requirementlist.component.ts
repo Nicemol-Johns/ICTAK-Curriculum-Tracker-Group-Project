@@ -1,0 +1,22 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { RequirementformService } from 'src/app/requirementform.service';
+
+@Component({
+  selector: 'app-requirementlist',
+  templateUrl: './requirementlist.component.html',
+  styleUrls: ['./requirementlist.component.css']
+})
+export class RequirementlistComponent {
+list:any[]=[];
+
+  constructor(private router:Router,private api:RequirementformService){}
+
+  ngOnInit(){
+    this.api.getForms().subscribe((res:any)=>{
+      this.list=res.data;
+      
+    })
+  }
+
+}

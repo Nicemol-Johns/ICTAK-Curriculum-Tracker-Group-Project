@@ -1,14 +1,14 @@
-<h2>Add Requirements of Curriculum</h2>
-
-<form (submit)="submitForm()">
+<h2 class="text-primary mt-2">Add Requirements of Curriculum</h2>
+<br>
+<form [formGroup]="Rform" (ngSubmit)="onSubmit()" >
   <div>
     <label for="requirementName">Name of Requirement:</label>
-    <input type="text" id="requirementName" name="requirementName" [(ngModel)]="requirementName" required>
+    <input type="text" id="requirementName" name="requirementName" formControlName="requirementName">
   </div>
 
   <div>
     <label for="trainingArea">Area where training is required:</label>
-    <select id="trainingArea" name="trainingArea" [(ngModel)]="trainingArea" required>
+    <select id="trainingArea" name="trainingArea" formControlName="trainingArea">
       <option value="FSD">FSD</option>
       <option value="ML-AI">ML-AI</option>
       <option value="DSA">DSA</option>
@@ -20,12 +20,12 @@
 
   <div>
     <label for="institution">Institution/Corporate office:</label>
-    <input type="text" id="institution" name="institution" [(ngModel)]="institution" required>
+    <input type="text" id="institution" name="institution" formControlName="institution">
   </div>
 
   <div>
     <label for="category">Category of Requirement:</label>
-    <select id="category" name="category" [(ngModel)]="category" required>
+    <select id="category" name="category" formControlName="category">
       <option value="Retail">Retail</option>
       <option value="Academic">Academic</option>
       <option value="Corporate">Corporate</option>
@@ -35,13 +35,10 @@
 
   <div>
     <label for="trainingHours">No. of hours of training:</label>
-    <input type="number" id="trainingHours" name="trainingHours" [(ngModel)]="trainingHours" required>
+    <input type="number" id="trainingHours" name="trainingHours" formControlName="trainingHours" >
   </div>
 
-  <div>
-    <label for="fileReference">Upload file for references:</label>
-    <input type="file" id="fileReference" name="fileReference" accept=".pdf, .docx" (change)="onFileSelected($event)">
-  </div>
+  
 
   <button type="submit">Submit</button>
 </form>

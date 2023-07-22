@@ -18,6 +18,7 @@ import { CurriculumListComponent } from './pages/curriculums/curriculum-list/cur
 import { CurriculumQueriesService } from './curriculum-queries.service';
 import { ViewComponent } from './pages/curriculums/view/view.component';
 import { EditComponent } from './pages/curriculums/edit/edit.component';
+//import { SearchFilterPipe } from './search-filter.pipe';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { EditComponent } from './pages/curriculums/edit/edit.component';
     AboutUsComponent,
     CurriculumListComponent,
     ViewComponent,
-    EditComponent
+    EditComponent,
+    //SearchFilterPipe
   ],
   imports: [
     BrowserModule,

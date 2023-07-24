@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,13 @@ export class RequirementformService {
   private baseUrl = 'http://localhost:3000/curriculum-tracker';
 
   constructor(private http:HttpClient) { }
-  Adddetails(data:any){
-    return this.http.post(`${this.baseUrl}/rform`,data)
-      }
+  
+  addRequirement(requirementData: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/rform`, requirementData);
+  }
 
-
-      getForms(){
-        return this.http.get(`${this.baseUrl}/rlist`)
-      }
-
+  getRequirements(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/rlist`);
+  }
 
 }

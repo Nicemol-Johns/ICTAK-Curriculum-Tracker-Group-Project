@@ -4,7 +4,7 @@ const router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
-const { usersSignupLoginData,curriculumSchema }=require("../model/schema")
+const { usersSignupLoginData,curriculumSchema, requirementSchema }=require("../model/schema")
 
 router.post("/user-signup",async (req,res)=>{                              
     try{
@@ -97,35 +97,31 @@ router.post('/login', (req, res) => {
 
 
 router.post('/rform', async (req, res) => {
-
   try {
-      let item = req.body
-      const saveddata = await FormDataData(form); //crosschecking the criteria before saving
-      saveddata.save();
-
-      res.json({message:'success', status: 201}).status(201)
-
+    const newRequirement = req.body;
+    const createdRequirement = await requirementSchema.create(newRequirement);
+    res.status(201).json({ data: createdRequirement, message: 'Requirement created successfully' });
   } catch (error) {
-      console.log(error)
-      res.json({message:'failed', status: 400}).status(400)
+    res.status(500).json({ error: 'Failed to create requirement' });
   }
+});
 
-
-})
-
-
-
+// API to fetch all requirements
 router.get('/rlist', async (req, res) => {
   try {
-
-      let data = await FormDataData.find({})
-      res.json({data:data, status: 200}).status(200)
-
-  } catch (error) {
-      console.log(error)
-      res.send('error')
+    const requirements = await requirementSchema.find();
+    res.status(200).json(requirements);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch requirements' });
   }
-})
+});
+
+
+
+
+
+
+
 
 
 module.exports = router;

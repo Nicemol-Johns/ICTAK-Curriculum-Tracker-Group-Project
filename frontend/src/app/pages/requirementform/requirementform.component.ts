@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RequirementformService } from 'src/app/requirementform.service';
 
@@ -8,27 +8,33 @@ import { RequirementformService } from 'src/app/requirementform.service';
   templateUrl: './requirementform.component.html',
   styleUrls: ['./requirementform.component.css']
 })
-export class RequirementformComponent {
- constructor(private router:Router,private api:RequirementformService){}
+export class RequirementformComponent implements OnInit {
+  Rform: FormGroup;
 
-Rform=new FormGroup({
-  "requirementName":new FormControl(""),
-  "trainingArea":new FormControl(""),
-  "institution":new FormControl(""),
-  "category":new FormControl(""),
-  "trainingHours":new FormControl(""),
-  
-})
-onSubmit(){
-  console.log(this.Rform.value)
-  this.api.Adddetails(this.Rform.value).subscribe(data=>console.log(data))
-  console.log(this.Rform.value);
-  this.api.Adddetails(this.Rform.value).subscribe(
-    (data) => console.log(data),
-    (error) => console.error(error)
-  );
+  constructor(private router: Router, private api: RequirementformService, private formBuilder: FormBuilder) {
+    this.Rform = this.formBuilder.group({
+      id:new FormControl(''),
+      requirementName: new FormControl(''),
+      trainingArea: new FormControl(''),
+      institution: new FormControl(''),
+      category: new FormControl(''),
+      trainingHours: new FormControl('')
+    });
+  }
 
+  ngOnInit(): void {
+  }
+
+  onSubmit() {
+    this.api.addRequirement(this.Rform.value).subscribe(
+      (data) => {
+        console.log('Requirement added successfully:', data);
+        this.router.navigate(['/dashboard/requirement-list']);
+      },
+      (error) => console.error('Error adding requirement:', error)
+    );
+  }
 }
 
 
-}
+

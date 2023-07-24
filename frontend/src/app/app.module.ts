@@ -39,6 +39,8 @@ import { RequirementformService } from './requirementform.service';
     CurriculumListComponent,
     ViewComponent,
     EditComponent,
+    RequirementformComponent,
+    RequirementlistComponent
     //SearchFilterPipe
   ],
   imports: [

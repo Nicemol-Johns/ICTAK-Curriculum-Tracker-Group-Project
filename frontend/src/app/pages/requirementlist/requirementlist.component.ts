@@ -13,10 +13,14 @@ list:any[]=[];
   constructor(private router:Router,private api:RequirementformService){}
 
   ngOnInit(){
-    this.api.getForms().subscribe((res:any)=>{
-      this.list=res.data;
-      
-    })
+    this.api.getRequirements().subscribe((res:any)=>{
+      this.list=res; 
+    },
+    (error) => {
+      console.error('Error fetching requirements:', error);
+    }
+    )
   }
+  
 
 }

@@ -1,12 +1,44 @@
-<button class="create-employee-button" routerLink="/dashboard/requirement-list/rform">Create Form</button>
+  
 
-<div class="d-flex flex-md-column justify-content-center  m-5">
-    <div class="list-group" *ngFor="let form of list">
-      <div  class="list-group-item">
-        <a  class="list-group-item-action d-flex justify-content-between" style="cursor:pointer;background-color: rgba(202, 195, 156, 0.39);">
-          {{form.requirementName}}
+<button class="btn btn-primary m-5 " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <i class="bi bi-list"></i></button>
 
-         </a>
-       </div>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Welcome Admin</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    ...
+  </div>
+</div>
+  
+  
+  
+  <button class="create-employee-button" routerLink="/dashboard/requirement-list/rform">Create Form</button>
+ 
+  <div class="container mt-5 px-2">
+    <div class="row">
+     <div class="col-4" *ngFor="let form of list">
+ 
+         <div class="card mb-4" style="width: 18rem;">
+             <div class="card-body">
+               <h5 class="card-title text-center">Requirement: {{form.requirementName}}</h5>
+               <h6 class="card-text">Training Area: {{form.trainingArea}}</h6>
+               <h6 class="card-text">Institution/Corporate office: {{form.institution}}</h6>
+               <h6 class="card-text">Category: {{form.category}}</h6>
+               <h6 class="card-text">No. of hours of training:{{form.trainingHours}}</h6>
+             
+               
+             
+             </div>
+           </div>
+ 
+     </div>
+ 
     </div>
-  </div>  
+ 
+ </div>
+ 
+
+ 
+ <button class="create-employee-button1" routerLink="/dashboard"> Back </button>

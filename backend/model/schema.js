@@ -57,22 +57,7 @@ const RequirementSchema=mongoose.Schema({
 
 })
 
-// const LoginSchema=mongoose.Schema({
-//     email:{
-//         type:String,
-//         required:true,
-//         unique:true,
-//     },
-//     password:{
-//         type:String,
-//         required:true
-//     }
 
-
-// })
-
-// const UserModel=mongoose.model('user',LoginSchema)
-// module.exports=UserModel
 const usersSignupLoginData = mongoose.model('users',SignupSchema);
 const curriculumSchema = mongoose.model('curriculums',CurriculumSchema)
 const requirementSchema =mongoose.model('requirements',RequirementSchema)

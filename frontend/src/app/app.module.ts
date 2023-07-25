@@ -23,6 +23,7 @@ import { RequirementformComponent } from './pages/requirementform/requirementfor
 import { RequirementlistComponent } from './pages/requirementlist/requirementlist.component';
 import { RequirementformService } from './requirementform.service';
 import { DashboardFacultyComponent } from './pages/dashboard-faculty/dashboard-faculty/dashboard-faculty.component';
+import { FooterShortComponent } from './pages/home/footer-short/footer-short.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { DashboardFacultyComponent } from './pages/dashboard-faculty/dashboard-f
     EditComponent,
     RequirementformComponent,
     RequirementlistComponent,
-    DashboardFacultyComponent
+    DashboardFacultyComponent,
+    FooterShortComponent
     //SearchFilterPipe
   ],
   imports: [

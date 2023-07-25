@@ -22,6 +22,7 @@ import { EditComponent } from './pages/curriculums/edit/edit.component';
 import { RequirementformComponent } from './pages/requirementform/requirementform.component';
 import { RequirementlistComponent } from './pages/requirementlist/requirementlist.component';
 import { RequirementformService } from './requirementform.service';
+import { DashboardFacultyComponent } from './pages/dashboard-faculty/dashboard-faculty/dashboard-faculty.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { RequirementformService } from './requirementform.service';
     ViewComponent,
     EditComponent,
     RequirementformComponent,
-    RequirementlistComponent
+    RequirementlistComponent,
+    DashboardFacultyComponent
     //SearchFilterPipe
   ],
   imports: [

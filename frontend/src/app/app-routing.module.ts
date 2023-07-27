@@ -14,6 +14,8 @@ import { EditComponent } from './pages/curriculums/edit/edit.component';
 import { RequirementformComponent } from './pages/requirementform/requirementform.component';
 import { RequirementlistComponent } from './pages/requirementlist/requirementlist.component';
 import { DashboardFacultyComponent } from './pages/dashboard-faculty/dashboard-faculty/dashboard-faculty.component';
+import { FacultyDashboardComponent } from './pages/faculty-dashboard/faculty-dashboard.component';
+import { RformFacultyComponent } from './pages/rform-faculty/rform-faculty.component';
 
 //import { RequirementFormComponent } from './pages/requirement-form/requirement-form.component';
 
@@ -30,12 +32,16 @@ const routes: Routes = [
   {path:'dashboard/curriculum-list/edit/:id',component:EditComponent},
   {path:'dashboard/requirement-list/rform',component:RequirementformComponent},
   {path:'dashboard/requirement-list',component:RequirementlistComponent},
-  {path:'faculty',component:DashboardFacultyComponent}
+  
 
 ];
 
+const facultyDashboard :Routes=[
+  {path:'faculty-dashboard',component:FacultyDashboardComponent,children:[{path:'Rformfaculty',component:RformFacultyComponent}]}
+];
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),RouterModule.forChild(facultyDashboard)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

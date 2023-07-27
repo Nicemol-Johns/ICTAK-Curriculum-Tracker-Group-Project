@@ -46,7 +46,7 @@ import { FacultyDashboardComponent } from './pages/faculty-dashboard/faculty-das
     EditComponent,
     RequirementformComponent,
     RequirementlistComponent,
-    DashboardFacultyComponent,
+    FacultyDashboardComponent,
     FooterShortComponent
     //SearchFilterPipe
   ],

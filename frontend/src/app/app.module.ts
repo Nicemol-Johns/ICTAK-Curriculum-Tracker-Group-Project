@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthService } from './auth.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +44,7 @@ import { ReferencesComponent } from './pages/create-curriculums/components/refer
     SignupComponent,
     LoginComponent,
     HomeComponent,
+    RformFacultyComponent,
     DashboardComponent,
     AboutUsComponent,
     CurriculumListComponent,

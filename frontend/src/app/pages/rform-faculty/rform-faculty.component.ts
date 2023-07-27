@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RequirementformService } from 'src/app/requirementform.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-rform-faculty',
@@ -16,9 +17,6 @@ export class RformFacultyComponent {
     this.api.getRequirements().subscribe((res:any)=>{
       this.list=res; 
     },
-    (error) => {
-      console.error('Error fetching requirements:', error);
-    }
     )
   }
 }

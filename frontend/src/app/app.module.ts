@@ -25,6 +25,8 @@ import { RequirementformService } from './requirementform.service';
 
 import { FacultyDashboardComponent } from './pages/faculty-dashboard/faculty-dashboard.component';
 import { FooterShortComponent } from './pages/home/footer-short/footer-short.component';
+import { RformFacultyComponent } from './pages/rform-faculty/rform-faculty.component';
+
 import { CreateCurriculumsComponent } from './pages/create-curriculums/create-curriculums.component';
 import { RequirementsComponent } from './pages/create-curriculums/components/requirements/requirements.component';
 import { DetailsComponent } from './pages/create-curriculums/components/details/details.component';
@@ -48,6 +50,7 @@ import { ReferencesComponent } from './pages/create-curriculums/components/refer
     EditComponent,
     RequirementformComponent,
     RequirementlistComponent,
+    FacultyDashboardComponent,
     FooterShortComponent,
     CreateCurriculumsComponent,
     FacultyDashboardComponent,

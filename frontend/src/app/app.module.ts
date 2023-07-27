@@ -22,7 +22,7 @@ import { EditComponent } from './pages/curriculums/edit/edit.component';
 import { RequirementformComponent } from './pages/requirementform/requirementform.component';
 import { RequirementlistComponent } from './pages/requirementlist/requirementlist.component';
 import { RequirementformService } from './requirementform.service';
-import { DashboardFacultyComponent } from './pages/dashboard-faculty/dashboard-faculty/dashboard-faculty.component';
+
 import { FooterShortComponent } from './pages/home/footer-short/footer-short.component';
 
 
@@ -43,7 +43,6 @@ import { FooterShortComponent } from './pages/home/footer-short/footer-short.com
     EditComponent,
     RequirementformComponent,
     RequirementlistComponent,
-    DashboardFacultyComponent,
     FooterShortComponent
     //SearchFilterPipe
   ],

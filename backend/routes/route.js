@@ -29,7 +29,7 @@ router.post('/login', (req, res) => {
       usersSignupLoginData.findOne({ email, password })
       .then(user => {
         if (user) {
-          res.status(200).json({ message: 'Login successful',api:'/faculty'});
+          res.status(200).json({ message: 'Login successful',api:'/faculty-dashboard'});
         } else {
           res.status(401).json({ error: 'Invalid username or password' });
         }

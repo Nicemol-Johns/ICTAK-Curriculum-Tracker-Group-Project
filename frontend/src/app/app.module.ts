@@ -23,7 +23,12 @@ import { RequirementformComponent } from './pages/requirementform/requirementfor
 import { RequirementlistComponent } from './pages/requirementlist/requirementlist.component';
 import { RequirementformService } from './requirementform.service';
 
+import { FacultyDashboardComponent } from './pages/faculty-dashboard/faculty-dashboard.component';
 import { FooterShortComponent } from './pages/home/footer-short/footer-short.component';
+import { CreateCurriculumsComponent } from './pages/create-curriculums/create-curriculums.component';
+import { RequirementsComponent } from './pages/create-curriculums/components/requirements/requirements.component';
+import { DetailsComponent } from './pages/create-curriculums/components/details/details.component';
+import { ReferencesComponent } from './pages/create-curriculums/components/references/references.component';
 
 
 @NgModule({
@@ -43,7 +48,12 @@ import { FooterShortComponent } from './pages/home/footer-short/footer-short.com
     EditComponent,
     RequirementformComponent,
     RequirementlistComponent,
-    FooterShortComponent
+    FooterShortComponent,
+    CreateCurriculumsComponent,
+    FacultyDashboardComponent,
+    RequirementsComponent,
+    DetailsComponent,
+    ReferencesComponent
     //SearchFilterPipe
   ],
   imports: [

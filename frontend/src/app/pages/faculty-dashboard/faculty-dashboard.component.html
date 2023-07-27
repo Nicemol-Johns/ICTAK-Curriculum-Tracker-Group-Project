@@ -10,9 +10,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <span class="fs-5  d-sm-inline">
-                        <span id="facultyName">Faculty</span> <!--Name of the user-->
-                        Dashboard</span>
+                    <span class="fs-6 font-weight-semi-bold d-sm-inline">
+                        <span id="facultyName">FACULTY</span> <!--Name of the user-->
+                        DASHBOARD</span>
                 </div>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
@@ -21,14 +21,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
+                        <a routerLink="curriculum-create" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light">
+                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Curriculums</span> </a>
                         <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-light">Approved</span> </a>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
+                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-light">Pending</span> </a>
                             </li>
                         </ul>
                     </li>
@@ -90,7 +90,7 @@
             </div>
         </div>
         <div class="col py-3 text-center bg-tertiary">
-            contents....
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>

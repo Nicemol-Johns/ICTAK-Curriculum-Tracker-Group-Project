@@ -14,6 +14,10 @@ import { EditComponent } from './pages/curriculums/edit/edit.component';
 import { RequirementformComponent } from './pages/requirementform/requirementform.component';
 import { RequirementlistComponent } from './pages/requirementlist/requirementlist.component';
 import { FacultyDashboardComponent } from './pages/faculty-dashboard/faculty-dashboard.component';
+import { CreateCurriculumsComponent } from './pages/create-curriculums/create-curriculums.component';
+import { RequirementsComponent } from './pages/create-curriculums/components/requirements/requirements.component';
+import { DetailsComponent } from './pages/create-curriculums/components/details/details.component';
+import { ReferencesComponent } from './pages/create-curriculums/components/references/references.component';
 
 //import { RequirementFormComponent } from './pages/requirement-form/requirement-form.component';
 
@@ -33,7 +37,19 @@ const routes: Routes = [
 ];
 
 const facultyDashboard :Routes = [
-  {path:'faculty-dashboard',component:FacultyDashboardComponent}
+  {
+    path:'faculty-dashboard',component:FacultyDashboardComponent,
+           children:[
+            {
+              path:'curriculum-create',component:CreateCurriculumsComponent,children:[
+                {path:'requirements',component:RequirementsComponent},
+                {path:'details',component:DetailsComponent},
+                {path:'references',component:ReferencesComponent},
+                {path: '', redirectTo: 'requirements', pathMatch: 'full' } //set the default routing to requirements component when the create-curriculum component is loaded
+              ]
+            },
+          ]
+}
 ];
 
 

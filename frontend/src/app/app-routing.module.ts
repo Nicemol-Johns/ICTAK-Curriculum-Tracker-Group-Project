@@ -36,27 +36,29 @@ const routes: Routes = [
   {path:'dashboard/curriculum-list/edit/:id',component:EditComponent},
   {path:'dashboard/requirement-list/rform',component:RequirementformComponent},
   {path:'dashboard/requirement-list',component:RequirementlistComponent},
+  {
+    path: 'faculty-dashboard', component: FacultyDashboardComponent,
+    children: [
+      { path: 'Rformfaculty', component: RformFacultyComponent },
+      {
+        path: 'curriculum-create', component: CreateCurriculumsComponent, children: [
+          { path: 'requirements', component: RequirementsComponent },
+          { path: 'details', component: DetailsComponent },
+          { path: 'references', component: ReferencesComponent },
+          { path: '', redirectTo: 'requirements', pathMatch: 'full' } // Set the default routing to requirements component when the create-curriculum component is loaded
+        ]
+      },
+      { path: '', redirectTo: 'Rformfaculty', pathMatch: 'full' }, // Set the default child route for FacultyDashboardComponent
+    ]
+  }
 ];
 
-const facultyDashboard :Routes = [
-  {
-    path:'faculty-dashboard',component:FacultyDashboardComponent,
-           children:[
-            {
-              path:'curriculum-create',component:CreateCurriculumsComponent,children:[
-                {path:'requirements',component:RequirementsComponent},
-                {path:'details',component:DetailsComponent},
-                {path:'references',component:ReferencesComponent},
-                {path: '', redirectTo: 'requirements', pathMatch: 'full' } //set the default routing to requirements component when the create-curriculum component is loaded
-              ]
-            },
-            {path:'Rformfaculty',component:RformFacultyComponent}
-         ]
-}
-];
+
+
+
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),RouterModule.forChild(facultyDashboard)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

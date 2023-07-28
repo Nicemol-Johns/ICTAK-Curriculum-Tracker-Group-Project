@@ -17,19 +17,44 @@ const SignupSchema = mongoose.Schema({
         required:true
     }
 })
-const CurriculumSchema = mongoose.Schema({
-    name:{
+const CurriculumSavedSchema = mongoose.Schema({
+    s_no:{
         type:String,                                                         
         required:true        
     },
-    area:{
+    name:{
         type:String,                                                         
         required:true            
     },
-    refernceLink:{
+    description:{
         type:String,
         required:true
+    },
+    // reference:{
+    //     type:String
+    // },
+    approvedStatus:{
+        type:Boolean
     }
+
+})
+const CurriculumSchema = mongoose.Schema({
+    s_no:{
+        type:String,                                                         
+        required:true        
+    },
+    name:{
+        type:String,                                                         
+        required:true            
+    },
+    description:{
+        type:String,
+        required:true
+    },
+    approvedStatus:{
+        type:Boolean
+    }
+
 })
 const RequirementSchema=mongoose.Schema({
     requirementName:{
@@ -59,7 +84,8 @@ const RequirementSchema=mongoose.Schema({
 
 
 const usersSignupLoginData = mongoose.model('users',SignupSchema);
-const curriculumSchema = mongoose.model('curriculums',CurriculumSchema)
+const curriculumSavedSchema = mongoose.model('curriculum-save',CurriculumSavedSchema) 
+const curriculumSchema = mongoose.model('curriculums',CurriculumSchema) //final curriculum model
 const requirementSchema =mongoose.model('requirements',RequirementSchema)
 
-module.exports = {usersSignupLoginData,curriculumSchema,requirementSchema};
+module.exports = {usersSignupLoginData,curriculumSchema,requirementSchema,curriculumSavedSchema};

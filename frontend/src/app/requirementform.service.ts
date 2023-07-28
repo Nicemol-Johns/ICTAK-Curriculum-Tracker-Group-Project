@@ -19,4 +19,8 @@ export class RequirementformService {
     return this.http.get<any[]>(`${this.baseUrl}/rlist`);
   }
 
+  getRequirementById(id:any){
+    return this.http.get(`${this.baseUrl}/requirement/${id}`)
+  }
+
 }

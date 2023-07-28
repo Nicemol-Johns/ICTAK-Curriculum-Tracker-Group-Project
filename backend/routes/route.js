@@ -4,7 +4,7 @@ const router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
-const { usersSignupLoginData,curriculumSchema, requirementSchema }=require("../model/schema")
+const { usersSignupLoginData,curriculumSchema, requirementSchema, curriculumSavedSchema }=require("../model/schema")
 
 router.post("/user-signup",async (req,res)=>{                              
     try{
@@ -55,6 +55,18 @@ router.post('/login', (req, res) => {
       res.status(400).json({ message: "GET request CANNOT be completed" });       
     }
     })
+
+    router.post('/curriculumform', async (req, res) => {
+      try {
+        const newCurriculum = req.body;
+        console.log(newCurriculum)
+        const createdCurriculum = await curriculumSavedSchema(newCurriculum);
+        createdCurriculum.save();   
+        res.status(201).json({ data: createdCurriculum, message: 'Curriculum created successfully' });
+      } catch (error) {
+        res.status(500).json({ error: 'Failed to create curriculum' });
+      }
+    });
 
     router.get('/curriculum/:id',async(req,res)=>{
       try {
@@ -115,6 +127,19 @@ router.get('/rlist', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch requirements' });
   }
 });
+
+router.get('/requirement/:id',async(req,res)=>{
+  try {
+    let id = req.params.id;
+    let data = await requirementSchema.findById(id);
+    res.set('Cache-Control', 'no-store');
+    console.log(data)
+    res.json({data:data,status:200}).status(200);
+  } catch (error) {
+    res.status(400).json({ message: "GET request CANNOT be completed" });       
+  }
+  }
+) 
 
 
 

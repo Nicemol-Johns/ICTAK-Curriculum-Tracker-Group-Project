@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 import { FetchRequirementsFacultyDashboardService } from 'src/app/fetch-requirements-faculty-dashboard.service';
 
@@ -10,7 +11,7 @@ import { FetchRequirementsFacultyDashboardService } from 'src/app/fetch-requirem
 })
 export class DetailsComponent {
 
-  constructor(private queries:CurriculumQueriesService,private fetch:FetchRequirementsFacultyDashboardService){}
+  constructor(private queries:CurriculumQueriesService,private router:Router,private fetch:FetchRequirementsFacultyDashboardService){}
  
   curriculum={
     s_no:'',
@@ -39,6 +40,8 @@ export class DetailsComponent {
     this.queries.addCurriculum(dataToSend).subscribe((res: any) => {
         console.log(res.data);
         console.log('success');
+        alert('Added successfully')
+        this.router.navigate(['/faculty-dashboard/Rformfaculty'])
       }
     );
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
+import { FetchRequirementsFacultyDashboardService } from 'src/app/fetch-requirements-faculty-dashboard.service';
 
 @Component({
   selector: 'app-details',
@@ -9,7 +10,7 @@ import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 })
 export class DetailsComponent {
 
-  constructor(private queries:CurriculumQueriesService){}
+  constructor(private queries:CurriculumQueriesService,private fetch:FetchRequirementsFacultyDashboardService){}
  
   curriculum={
     s_no:'',
@@ -19,9 +20,23 @@ export class DetailsComponent {
     approvedStatus:false
   }
 
-  onSubmit(){
+  requirement = this.fetch.getRequirements()
 
-    this.queries.addCurriculum(this.curriculum).subscribe((res: any) => {
+
+  onSubmit(){
+    let dataToSend = {
+      s_no: this.curriculum.s_no,
+      name: this.curriculum.name,
+      description: this.curriculum.description,
+      approvedStatus: this.curriculum.approvedStatus,
+      requirementName:this.requirement.requirementName,
+      trainingArea:this.requirement.trainingArea,
+      institution:this.requirement.institution,
+      category:this.requirement.category,
+      trainingHours:this.requirement.trainingHours
+    };
+    console.log(dataToSend)
+    this.queries.addCurriculum(dataToSend).subscribe((res: any) => {
         console.log(res.data);
         console.log('success');
       }

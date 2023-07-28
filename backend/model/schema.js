@@ -30,12 +30,31 @@ const CurriculumSavedSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    // reference:{
-    //     type:String
-    // },
     approvedStatus:{
         type:Boolean
-    }
+    },
+    requirementName:{
+        type:String,
+        required:true
+    },
+    trainingArea:{
+        type:String,
+        required:true,
+        enum: ['FSD', 'ML-AI', 'DSA', 'RPA', 'ST', 'CSA'],
+    },
+    institution:{
+        type:String,
+        required:true
+    },
+    category:{
+        type:String,
+        required:true,
+        enum: ['Retail', 'Academic', 'Corporate', 'Govt'],
+    },
+    trainingHours:{
+        type:Number,
+        required:true
+    },
 
 })
 const CurriculumSchema = mongoose.Schema({

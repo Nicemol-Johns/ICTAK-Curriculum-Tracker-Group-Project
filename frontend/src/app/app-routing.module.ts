@@ -29,12 +29,16 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signupstatus',component:SignupStatusComponent},
   //Admin Dashboard
-  {path:'dashboard',
-  component:DashboardComponent,
-  children:[
-    {path:'requirement-list',component:RequirementlistComponent},{ path: 'requirement-list/rform', component: RequirementformComponent },
-  {path:'curriculum-list',component:CurriculumListComponent},{path:'curriculum-list/view/:id',component:ViewComponent},{path:'curriculum-list/edit/:id',component:EditComponent}]},
-  
+  {path:'dashboard', component:DashboardComponent,
+    children:[
+      {path:'requirement-list',component:RequirementlistComponent},
+      { path: 'requirement-list/rform', component: RequirementformComponent },
+      {path:'curriculum-list',component:CurriculumListComponent},
+      {path:'curriculum-list/view/:id',component:ViewComponent},
+      {path:'curriculum-list/edit/:id',component:EditComponent},
+      { path: '', redirectTo: 'requirement-list', pathMatch: 'full' }
+    ]
+  },
   {path:'about-us',component:AboutUsComponent},
  
   

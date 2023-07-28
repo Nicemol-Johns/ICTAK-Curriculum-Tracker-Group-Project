@@ -1,35 +1,68 @@
-<!-- <div class="container">
-    <div class="page">
-        <form>
-            <div class="mb-3">
-              <label class="form-label">Name of Requirement</label>
-              <input type="text" class="form-control" disabled value="{{curriculum.name}}">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Area of Training</label>
-              <input type="text" class="form-control" disabled value="{{curriculum.area}}">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Reference Links: <a href="{{curriculum.referenceLink}}"><i class="bi bi-link-45deg"></i></a></label>
-              <a href=""></a>
-            </div>
-            <button routerLink="/dashboard/curriculum-list" class="btn btn-primary">Back</button>
-          </form>
-    </div>   
+<div class="d-flex justify-content-between">
+  <button class="btn" ><i class="bi bi-arrow-left-circle" style="font-size: 2rem; color: cornflowerblue;" routerLink="/dashboard/curriculum-list"></i> </button>
 </div>
-<router-outlet></router-outlet> -->
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link" routerLinkActive="active" routerLink="/faculty-dashboard/curriculum-create/requirements">Requirements</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLinkActive="active" routerLink="">Details</a>
-  </li>
-  <!-- <li class="nav-item">
-    <a class="nav-link" routerLinkActive="active" routerLink="">Link</a>
-  </li> -->
-  <!-- <li class="nav-item">
-    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-  </li> -->
-</ul>
+<div class="d-flex justify-content-end">
+  <button  class="btn btn-primary mr-5">Edit</button>
+</div>
+<div class="row">
+<!--First Column-->
+    <div class="page container-fluid col-lg-6 col-md text-justify">
+      <form>
+        <div class="form-group">
+          <label for="Requirement" class="text-lg-start">Requirement:</label>
+          <input type="text" class="form-control" id="Requirement" required  disabled value="{{data.requirementName}}">
+        </div>       
+        <div class="form-group">
+          <label for="Area" class="text-lg-start">Area of Training:</label>
+          <input type="text" class="form-control" id="Area" required  disabled value="{{data.trainingArea}}">
+        </div>       
+        <div class="form-group">
+          <label for="Institution" class="text-lg-start">Institution/Corporate office</label>
+          <input type="text" class="form-control" id="Institution" required  disabled value="{{data.institution}}">
+        </div>       
+        <div class="form-group">
+          <label for="Category" class="text-lg-start">Category:</label>
+          <input type="text" class="form-control" id="Category" required  disabled value="{{data.category}}">
+        </div>       
+        <div class="form-group">
+          <label for="Hours" class="text-lg-start">Training Hours</label>
+          <input type="text" class="form-control" id="Hours" required  disabled value="{{data.trainingHours}}">
+        </div>       
+        <div class="form-group">
+          <label for="s_no" class="text-lg-start">Curriculum S.No</label>
+          <input type="text" class="form-control" id="s_no" required  disabled value="{{data.s_no}}">
+        </div>       
+        <div class="form-group">
+          <label for="facultyname" class="text-lg-start">Faculty Name</label>
+          <input type="text" class="form-control" id="facultyname" required  disabled value="{{data.name}}">
+        </div>       
+      </form>
+    </div>
+  <!--Second Column-->
+    <div class="page container-fluid col-lg-6 col-md text-justify">
+      <label for="">Click here to view the description:</label><br>
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#reg-modal">Desciption</button>
+    </div>    
+    <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" 
+    aria-hidded="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Description</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          {{data.description}}
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+</div>
 <router-outlet></router-outlet>
+   

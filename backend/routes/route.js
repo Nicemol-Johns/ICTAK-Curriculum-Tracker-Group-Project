@@ -71,7 +71,7 @@ router.post('/login', (req, res) => {
     router.get('/curriculum/:id',async(req,res)=>{
       try {
         let id = req.params.id;
-        let data = await curriculumSchema.findById(id);
+        let data = await curriculumSavedSchema.findById(id);
         res.set('Cache-Control', 'no-store');
         console.log(data)
         res.json({data:data,status:200}).status(200);

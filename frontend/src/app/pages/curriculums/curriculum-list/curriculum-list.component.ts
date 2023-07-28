@@ -23,9 +23,9 @@ export class CurriculumListComponent implements OnInit{
     this.router.navigate(['dashboard/curriculum-list/view/'+id]);
   }
 
-  edit(id:any){
-    this.router.navigate(['dashboard/curriculum-list/edit/'+id]);
-  }
+  // edit(id:any){
+  //   this.router.navigate(['dashboard/curriculum-list/edit/'+id]);
+  // }
 
   delete(id:any){
     this.getCurriculum.deleteCurriculum(id).subscribe((res:any)=>{console.log('Success')})

@@ -58,7 +58,8 @@ import { ReferencesComponent } from './pages/create-curriculums/components/refer
     FacultyDashboardComponent,
     RequirementsComponent,
     DetailsComponent,
-    ReferencesComponent
+    ReferencesComponent,
+
     //SearchFilterPipe
   ],
   imports: [

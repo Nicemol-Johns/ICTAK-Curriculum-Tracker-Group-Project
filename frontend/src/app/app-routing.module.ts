@@ -20,6 +20,7 @@ import { CreateCurriculumsComponent } from './pages/create-curriculums/create-cu
 import { RequirementsComponent } from './pages/create-curriculums/components/requirements/requirements.component';
 import { DetailsComponent } from './pages/create-curriculums/components/details/details.component';
 import { ReferencesComponent } from './pages/create-curriculums/components/references/references.component';
+//import { OperationsCurriculumComponent } from './pages/curriculums/operations-curriculum/operations-curriculum.component';
 
 //import { RequirementFormComponent } from './pages/requirement-form/requirement-form.component';
 
@@ -34,6 +35,7 @@ const routes: Routes = [
       {path:'requirement-list',component:RequirementlistComponent},
       { path: 'requirement-list/rform', component: RequirementformComponent },
       {path:'curriculum-list',component:CurriculumListComponent},
+     // {path:'curriculum-list',component:OperationsCurriculumComponent},
       {path:'curriculum-list/view/:id',component:ViewComponent},
       {path:'curriculum-list/edit/:id',component:EditComponent},
       { path: '', redirectTo: 'requirement-list', pathMatch: 'full' }

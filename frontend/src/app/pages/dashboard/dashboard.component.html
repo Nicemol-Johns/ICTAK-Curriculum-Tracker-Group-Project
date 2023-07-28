@@ -1,5 +1,5 @@
+<!-- 
 
-<!-- Admin Dashboard -->
 
 
 <button class="btn btn-primary m-5 " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <i class="bi bi-list"></i></button>
@@ -21,7 +21,7 @@
       <a routerLink="requirement-list">
         <div class="property-image">
           <div class="property-image-title">
-            <!-- Optional <h5>Card Title</h5> If you want it, turn on the CSS also. -->
+            
           </div>
         </div></a>
       <div class="property-description">
@@ -30,7 +30,7 @@
       </div>
       <a href="#">
         <div class="property-social-icons">
-          <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
+          
         </div>
       </a>
     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -38,7 +38,7 @@
       <a routerLink="curriculum-list">
         <div class="property-image">
           <div class="property-image-title">
-            <!-- Optional <h5>Card Title</h5> If you want it, turn on the CSS also. -->
+            
           </div>
         </div></a>
       <div class="property-description">
@@ -47,10 +47,114 @@
       </div>
       <a >
         <div class="property-social-icons">
-          <!-- I would usually put multipe divs inside here set to flex. Some people might use Ul li. Multiple Solutions -->
+          
         </div>
       </a>
     </div>
   </div>
+
+ -->
+
+
+
+ <div class="container-fluid">
+  <div class="row flex-nowrap">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+              <div class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                  <div class="row">
+                      <a href="#" class="nav-link">
+                          <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline"></span>
+                      </a>                           
+                  </div>
+              </div>
+              <div class="row">
+                  <a routerLink="/dashboard" style="text-decoration:none">
+                      <span class="fs-6 font-weight-semi-bold d-sm-inline">
+                          <span id="facultyName">ADMIN</span> <!--Name of the user-->
+                          DASHBOARD</span>
+                  </a>
+              </div>
+              <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                  <li class="nav-item">
+                      <a routerLink="/dashboard/requirement-list" class="nav-link align-middle text-light px-0">
+                          <i class="bi bi-ui-checks"></i><span class="ms-1 d-none d-sm-inline">Requirement Form</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a routerLink="/dashboard/curriculum-list" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light">
+                          <i class="fs-4 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline">Curriculums</span> </a>
+                      <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                          <li class="w-100">
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-light">Item</span> 1</a>
+                          </li>
+                          <li>
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline text-light">Item</span> 2</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="#" class="nav-link px-0 align-middle">
+                          <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
+                  </li>
+                  <li>
+                      <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                          <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a>
+                      <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                          <li class="w-100">
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
+                          </li>
+                          <li>
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                          <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
+                          <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                          <li class="w-100">
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
+                          </li>
+                          <li>
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
+                          </li>
+                          <li>
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
+                          </li>
+                          <li>
+                              <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a href="#" class="nav-link px-0 align-middle">
+                          <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
+                  </li>
+              </ul>
+              <hr>
+              <div class="dropdown pb-4">
+                  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                      <span class="d-none d-sm-inline mx-1">loser</span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                      <li><a class="dropdown-item" href="#">New project...</a></li>
+                      <li><a class="dropdown-item" href="#">Settings</a></li>
+                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                      <li>
+                          <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="#">Sign out</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="col py-3 text-center bg-tertiary">
+          <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>
+
 
 

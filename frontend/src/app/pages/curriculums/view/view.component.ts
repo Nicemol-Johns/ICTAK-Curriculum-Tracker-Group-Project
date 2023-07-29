@@ -11,6 +11,9 @@ export class ViewComponent implements OnInit {
 
   constructor(private api:CurriculumQueriesService,private activatedRoute:ActivatedRoute){}
 
+  isEditing = false;
+  changeText=false;
+
   data = {
     id:'',
     s_no: '',
@@ -23,6 +26,32 @@ export class ViewComponent implements OnInit {
     category:'',
     trainingHours:''
   };
+
+  Edit(){
+    this.isEditing=true;
+  }
+
+  Save(){
+    this.api.editDetails(this.data,this.data.id).subscribe(
+      (data) => {
+        console.log('success');
+        alert('Saving changes')
+      }
+   );
+    this.isEditing=false;
+  }
+
+  EditText(){
+    this.changeText = true;
+  }
+  SaveText(){
+    this.api.editDetails(this.data,this.data.id).subscribe(
+      (data) => {
+        console.log('success');
+      }
+   );
+    this.changeText = false;
+  }
 
   ngOnInit():void{
     const id=this.activatedRoute.snapshot.paramMap.get('id');
@@ -41,6 +70,11 @@ export class ViewComponent implements OnInit {
       
     })
   }
+
+
+   // this.router.navigate(["/dashboard/curriculum-list"])
+
+
 
   
     

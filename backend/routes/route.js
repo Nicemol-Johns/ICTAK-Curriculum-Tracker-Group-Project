@@ -85,7 +85,9 @@ router.post('/login', (req, res) => {
       try{
           let id = req.params.id;
           let updateData = {$set: req.body};
-          const updated = await curriculumSchema.findByIdAndUpdate(id,updateData);  
+
+          const updated = await curriculumSavedSchema.findByIdAndUpdate(id,updateData);  
+          console.log(updated)
           res.set('Cache-Control', 'no-store');                            
           res.status(200).json("UPDATE Successful");                                                                          
       }catch(error){
@@ -98,7 +100,7 @@ router.post('/login', (req, res) => {
     try {
         let id = req.params.id;
         console.log(id);  
-        let data = await curriculumSchema.findByIdAndRemove(id);
+        let data = await curriculumSavedSchema.findByIdAndRemove(id);
         // res.set('Cache-Control', 'no-store');      
         res.json({data:data,status:200}).status(201);
     } catch (error) {

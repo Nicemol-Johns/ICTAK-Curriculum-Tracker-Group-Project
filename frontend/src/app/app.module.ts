@@ -32,6 +32,8 @@ import { CreateCurriculumsComponent } from './pages/create-curriculums/create-cu
 import { RequirementsComponent } from './pages/create-curriculums/components/requirements/requirements.component';
 import { DetailsComponent } from './pages/create-curriculums/components/details/details.component';
 import { ReferencesComponent } from './pages/create-curriculums/components/references/references.component';
+import { CurriculumFetchComponent } from './pages/faculty-dashboard/curriculum-fetch/curriculum-fetch.component';
+import { CurriculumViewComponent } from './pages/faculty-dashboard/curriculum-fetch/curriculum-view/curriculum-view.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { ReferencesComponent } from './pages/create-curriculums/components/refer
     RequirementsComponent,
     DetailsComponent,
     ReferencesComponent,
+    CurriculumFetchComponent,
+    CurriculumViewComponent,
 
     //SearchFilterPipe
   ],

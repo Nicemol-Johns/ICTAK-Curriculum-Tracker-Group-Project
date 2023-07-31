@@ -22,6 +22,8 @@ import { DetailsComponent } from './pages/create-curriculums/components/details/
 import { ReferencesComponent } from './pages/create-curriculums/components/references/references.component';
 import { CurriculumFetchComponent } from './pages/faculty-dashboard/curriculum-fetch/curriculum-fetch.component';
 import { CurriculumViewComponent } from './pages/faculty-dashboard/curriculum-fetch/curriculum-view/curriculum-view.component';
+import { ApproveComponent } from './pages/approve/approve.component';
+import { PendingComponent } from './pages/pending/pending.component';
 //import { OperationsCurriculumComponent } from './pages/curriculums/operations-curriculum/operations-curriculum.component';
 
 //import { RequirementFormComponent } from './pages/requirement-form/requirement-form.component';
@@ -40,6 +42,8 @@ const routes: Routes = [
      // {path:'curriculum-list',component:OperationsCurriculumComponent},
       {path:'curriculum-list/view/:id',component:ViewComponent},
       {path:'curriculum-list/edit/:id',component:EditComponent},
+      {path:'approve',component:ApproveComponent},
+      {path:'pending',component:PendingComponent},
       { path: '', redirectTo: 'requirement-list', pathMatch: 'full' }
     ]
   },
@@ -61,7 +65,8 @@ const routes: Routes = [
       },
       { path: '', redirectTo: 'Rformfaculty', pathMatch: 'full' }, // Set the default child route for FacultyDashboardComponent
       { path: 'curriculum-fetch',component:CurriculumFetchComponent},
-      {path:'curriculum-fetch/curriculum-view/:id',component:CurriculumViewComponent}
+      {path:'curriculum-fetch/curriculum-view/:id',component:CurriculumViewComponent},{path:'approve',component:ApproveComponent},
+      {path:'pending',component:PendingComponent}
       
     ]
   }

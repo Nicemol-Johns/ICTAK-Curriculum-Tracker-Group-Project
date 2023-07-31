@@ -1,0 +1,11 @@
+
+<div class="pending-curriculums">
+<h1 class="text-primary">Pending Approval Requests</h1> 
+<br><br><br>
+<ul class="curriculum-list">
+  <li *ngFor="let curriculum of pendingCurriculums" class="curriculum-item">
+    {{ curriculum.name }}
+  </li>
+</ul>
+</div>
+<router-outlet></router-outlet>

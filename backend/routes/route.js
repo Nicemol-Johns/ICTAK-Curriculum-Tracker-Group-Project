@@ -143,6 +143,32 @@ router.get('/requirement/:id',async(req,res)=>{
   }
 ) 
 
+// Add a new route for curriculum approval
+router.put('/approve/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updateData = { approvedStatus: true }; // Set the approvedStatus to 'Approved'
+    const updatedCurriculum = await curriculumSavedSchema.findByIdAndUpdate(
+      id,
+      updateData,
+      { new: true }
+    );
+    console.log('Curriculum approved:', updatedCurriculum);
+    res.json({ data: updatedCurriculum, message: 'Curriculum approved successfully' });
+  } catch (error) {
+    console.error('Error while approving curriculum:', error);
+    res.status(500).json({ error: 'Failed to approve curriculum' });
+  }
+});
+router.get('/pendingCurriculums', async (req, res) => {
+  try {
+    const pendingCurriculums = await curriculumSavedSchema.find({ approvedStatus: false });
+    res.set('Cache-Control', 'no-store');
+    res.status(200).json({ data: pendingCurriculums });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch pending curriculum approvals' });
+  }
+});
 
 
 

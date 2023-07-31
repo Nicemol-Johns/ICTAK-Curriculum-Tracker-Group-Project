@@ -31,7 +31,8 @@ const CurriculumSavedSchema = mongoose.Schema({
         required:true
     },
     approvedStatus:{
-        type:Boolean
+        type:Boolean,
+        default:false
     },
     requirementName:{
         type:String,
@@ -71,7 +72,8 @@ const CurriculumSchema = mongoose.Schema({
         required:true
     },
     approvedStatus:{
-        type:Boolean
+        type:Boolean,
+        default:false
     }
 
 })

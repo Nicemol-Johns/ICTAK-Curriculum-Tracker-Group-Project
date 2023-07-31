@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 })
 export class ViewComponent implements OnInit {
 
-  constructor(private api:CurriculumQueriesService,private activatedRoute:ActivatedRoute){}
+  constructor(private api:CurriculumQueriesService,private activatedRoute:ActivatedRoute,private router:Router){}
 
   isEditing = false;
   changeText=false;
@@ -69,6 +69,19 @@ export class ViewComponent implements OnInit {
       this.data.trainingHours = res.data.trainingHours;
       
     })
+    }
+    approve(){
+      this.api.approveCurriculum(this.data.id).subscribe(
+        (data)=>{
+          console.log('curriculum approved');
+          alert('Aprroved successfully')
+          // this.router.navigate(['/approve']);
+        },
+        (error)=>{
+          console.error('Failed to approve curriculum',error);
+        }
+      )
+    }
   }
 
 
@@ -81,4 +94,4 @@ export class ViewComponent implements OnInit {
   
 
 
-}
+

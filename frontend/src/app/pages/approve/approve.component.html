@@ -12,7 +12,7 @@
 
   <ul class="curriculum-list">
     <li *ngFor="let curriculum of approvedCurriculums" class="curriculum-item">
-     <a > {{ curriculum.name }} </a>
+     <a (click)="view(curriculum._id)" > {{ curriculum.name }} </a>
     </li>
   </ul>
 </div>

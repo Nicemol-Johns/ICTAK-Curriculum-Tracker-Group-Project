@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 
 @Component({
@@ -9,11 +10,14 @@ import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 export class PendingComponent implements OnInit {
 pendingCurriculums: any[]=[];
 
-constructor(private api: CurriculumQueriesService){}
+constructor(private api: CurriculumQueriesService,private router:Router){}
 
 ngOnInit(): void {
   this.api.fetchPendingCurriculums().subscribe((res:any)=>{
     this.pendingCurriculums = res.data.filter((curriculum: any)=> curriculum.approvedStatus === false);
   })
+}
+view(id:any){
+  this.router.navigate(['dashboard/curriculum-list/view/'+id]);
 }
 }

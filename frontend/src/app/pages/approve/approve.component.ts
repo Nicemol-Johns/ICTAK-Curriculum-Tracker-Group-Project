@@ -17,5 +17,7 @@ ngOnInit(): void {
     this.approvedCurriculums= res.data.filter((curriculum:any)=>curriculum.approvedStatus === true );
   });
 }
-
+view(id:any){
+  this.router.navigate(['dashboard/curriculum-list/view/'+id]);
+}
 }

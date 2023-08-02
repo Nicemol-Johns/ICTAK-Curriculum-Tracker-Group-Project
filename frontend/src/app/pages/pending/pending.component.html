@@ -4,7 +4,8 @@
 <br><br><br>
 <ul class="curriculum-list">
   <li *ngFor="let curriculum of pendingCurriculums" class="curriculum-item">
-    {{ curriculum.name }}
+    <a (click)="view(curriculum._id)" > {{ curriculum.name }} </a>
+      
   </li>
 </ul>
 </div>

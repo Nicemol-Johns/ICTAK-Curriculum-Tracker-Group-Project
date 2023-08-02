@@ -36,6 +36,8 @@ import { CurriculumFetchComponent } from './pages/faculty-dashboard/curriculum-f
 import { CurriculumViewComponent } from './pages/faculty-dashboard/curriculum-fetch/curriculum-view/curriculum-view.component';
 import { ApproveComponent } from './pages/approve/approve.component';
 import { PendingComponent } from './pages/pending/pending.component';
+import { PendingFacultyComponent } from './pages/faculty-dashboard/pending-faculty/pending-faculty.component';
+import { ApprovedFacultyComponent } from './pages/faculty-dashboard/approved-faculty/approved-faculty.component';
 
 
 @NgModule({
@@ -66,7 +68,10 @@ import { PendingComponent } from './pages/pending/pending.component';
     CurriculumFetchComponent,
     CurriculumViewComponent,
     ApproveComponent,
-    PendingComponent
+    PendingComponent,
+    PendingFacultyComponent,
+    ApprovedFacultyComponent
+    
 
     //SearchFilterPipe
   ],

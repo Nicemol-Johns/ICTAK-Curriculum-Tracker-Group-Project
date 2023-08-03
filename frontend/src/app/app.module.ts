@@ -38,6 +38,7 @@ import { ApproveComponent } from './pages/approve/approve.component';
 import { PendingComponent } from './pages/pending/pending.component';
 import { PendingFacultyComponent } from './pages/faculty-dashboard/pending-faculty/pending-faculty.component';
 import { ApprovedFacultyComponent } from './pages/faculty-dashboard/approved-faculty/approved-faculty.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { ApprovedFacultyComponent } from './pages/faculty-dashboard/approved-fac
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SweetAlert2Module
   ],
   providers: [AuthService,CurriculumQueriesService,RequirementformService],
   bootstrap: [AppComponent]

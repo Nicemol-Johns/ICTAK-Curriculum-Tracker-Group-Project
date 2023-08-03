@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,6 +19,13 @@ login(){
   this.authserve.login(this.User.email,this.User.password).subscribe(response =>{
     console.log('login successful',response);
     this.router.navigate([response.api]);
+    const loginSuccess = true;
+
+    if (loginSuccess) {
+      Swal.fire('Success!', 'You have successfully logged in.', 'success');
+    } else {
+      Swal.fire('Error!', 'Invalid username or password.', 'error');
+    }
   })
   
 

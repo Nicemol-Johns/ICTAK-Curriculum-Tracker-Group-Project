@@ -19,14 +19,14 @@ login(){
   this.authserve.login(this.User.email,this.User.password).subscribe(response =>{
     console.log('login successful',response);
     this.router.navigate([response.api]);
-    const loginSuccess = true;
-
-    if (loginSuccess) {
-      Swal.fire('Success!', 'You have successfully logged in.', 'success');
-    } else {
-      Swal.fire('Error!', 'Invalid username or password.', 'error');
-    }
-  })
+    Swal.fire('Success!', 'You have successfully logged in.', 'success');
+  },
+  (error) => {
+    console.log('login failed', error);
+    Swal.fire('Error!', 'Invalid username or password.', 'error');
+  }
+   
+  )
   
 
 }

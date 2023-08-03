@@ -27,17 +27,13 @@ export class SignupComponent {
     userSignup(){
       console.log(`Function called ${this.user}`)
       this._auth.signupuser(this.user).subscribe((res:any)=>{
-        console.log('Success');
-        
-        const signUpSuccess = true;
-
-        if (signUpSuccess) {
-          Swal.fire('Success!', 'You have successfully signed up.', 'success');
-        } else {
-          Swal.fire('Error!', 'Something went wrong with the sign-up process.', 'error');
-        }
+        console.log('SignUp Success');
         this.router.navigate(['/login']);
-      })
+        Swal.fire('Success!', 'You have successfully signed up.', 'success');
+        },(error)=>{
+          console.log('SignUp Faild',error);
+          Swal.fire('Error!', 'Something went wrong with the sign-up process.', 'error');
+        })
 
     }
     

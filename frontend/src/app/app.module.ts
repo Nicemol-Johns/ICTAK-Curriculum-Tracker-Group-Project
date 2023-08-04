@@ -40,6 +40,7 @@ import { PendingFacultyComponent } from './pages/faculty-dashboard/pending-facul
 import { ApprovedFacultyComponent } from './pages/faculty-dashboard/approved-faculty/approved-faculty.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ChatServiceService } from './chat-service.service';
+import { SearchPipe } from './search.pipe';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { ChatServiceService } from './chat-service.service';
     PendingComponent,
     PendingFacultyComponent,
     ApprovedFacultyComponent,
+    SearchPipe,
 
     //SearchFilterPipe
   ],

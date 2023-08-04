@@ -9,6 +9,7 @@ import { RequirementformService } from 'src/app/requirementform.service';
 })
 export class RequirementlistComponent {
 list:any[]=[];
+searchText: string='';
 
   constructor(private router:Router,private api:RequirementformService){}
 

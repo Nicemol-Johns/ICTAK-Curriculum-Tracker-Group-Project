@@ -11,7 +11,7 @@ import { FetchRequirementsFacultyDashboardService } from 'src/app/fetch-requirem
 })
 export class RformFacultyComponent {
   list:any[]=[];
-
+  searchText: string='';
   constructor(private router:Router,private api:RequirementformService,private fetch:FetchRequirementsFacultyDashboardService){}
 
   ngOnInit(){

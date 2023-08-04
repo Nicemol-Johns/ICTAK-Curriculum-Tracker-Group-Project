@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ChatServiceService } from 'src/app/chat-service.service';
+import { ChatsBackendServicesService } from 'src/app/chats-backend-services.service';
 import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
+import { AdminMessage } from 'src/assets/AdminMessage.model';
+import { Message } from 'src/assets/Message.model';
 
 @Component({
   selector: 'app-view',
@@ -8,11 +12,19 @@ import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
+  Fname: string[] = [];
+  faculty = ''
 
-  constructor(private api:CurriculumQueriesService,private activatedRoute:ActivatedRoute){}
+  constructor(private api:CurriculumQueriesService,private activatedRoute:ActivatedRoute,private chats:ChatServiceService,private chats_backup:ChatsBackendServicesService){}
 
   isEditing = false;
   changeText=false;
+  message = '';
+
+  messages:any[] = [];
+  messages_unsorted:any[] = []
+  facultymessages:any[] = [];
+  adminMessages:any[] = [];
 
   data = {
     id:'',
@@ -53,6 +65,39 @@ export class ViewComponent implements OnInit {
     this.changeText = false;
   }
 
+  formatTimestamp(date: Date): string {
+    if (!date || !(date instanceof Date)) {
+      return ''; // Return an empty string or any other default value when the date is null, undefined, or not a valid Date object.
+    }
+  
+    return date.toUTCString();
+  }
+
+  onSubmit(){
+    this.faculty = this.chats.getChatRecipientAdmin()
+    this.Fname = this.faculty.split(' ')
+    const newMessage:AdminMessage = {
+      sender : "Admin",
+      content:this.message,
+      recipient:this.Fname[0],
+      timestamp:new Date()
+    };
+    console.log(newMessage)
+    this.chats_backup.getNewMessageAdmin(newMessage).subscribe((res:any)=>{
+      console.log(res.message);
+      this.chats_backup.getAllMessagesAdmin().subscribe((messages: any[]) => {
+        this.facultymessages = messages[0];
+        this.adminMessages = messages[1];
+        this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
+        this.messages = this.messages_unsorted.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+        console.log('Messages:', this.messages);
+        //console.log('Faculty Messages:', this.facultymessages);
+        //console.log('Admin Messages:', this.adminMessages);
+      });
+    });
+    this.message = ''
+  }
+
   ngOnInit():void{
     const id=this.activatedRoute.snapshot.paramMap.get('id');
     this.api.getDetails(id).subscribe((res:any)=>{
@@ -67,18 +112,31 @@ export class ViewComponent implements OnInit {
       this.data.institution = res.data.institution;
       this.data.category = res.data.category;
       this.data.trainingHours = res.data.trainingHours;
-      
+      console.log(`Admin communicates with faculty`,this.data.name)
     })
+   // this.Fname = this.data.name.split(' ')
+    // console.log(`Messages for admin dashboard:`)
+    // const facultyName = this.Fname[0]; // Assuming Fname contains the faculty name
+     //await this.fetchMessages(facultyName);
+    // try {
+    //   console.log(facultyName)
+    //   this.messages =await this.chats_backup.getAllMessages(facultyName)
+    //   } catch (error) {
+    //     console.error('Error while fetching messages:', error);
+    //   }
+    this.chats_backup.getAllMessagesAdmin().subscribe((messages: any[]) => {
+      this.facultymessages = messages[0];
+      this.adminMessages = messages[1];
+      this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
+      this.messages = this.messages_unsorted.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+      console.log('Messages:', this.messages);
+      //console.log('Faculty Messages:', this.facultymessages);
+      //console.log('Admin Messages:', this.adminMessages);
+    });
+  
   }
 
-
+  
    // this.router.navigate(["/dashboard/curriculum-list"])
-
-
-
-  
-    
-  
-
-
 }
+

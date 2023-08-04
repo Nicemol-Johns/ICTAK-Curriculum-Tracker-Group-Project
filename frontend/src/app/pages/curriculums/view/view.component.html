@@ -1,10 +1,10 @@
 <div class="d-flex justify-content-between">
   <button class="btn" ><i class="bi bi-arrow-left-circle" style="font-size: 2rem; color: cornflowerblue;" routerLink="/dashboard/curriculum-list"></i> </button>
 </div>
-<div class="d-flex justify-content-end">
+<!-- <div class="d-flex justify-content-end">
   <button  class="btn btn-primary mr-5" (click)="Edit()">Edit</button>
   <button  class="btn btn-primary mr-5" (click)="Save()" >Save</button>
-</div>
+</div> -->
 <div class="row">
 <!--First Column-->
     <div class="page container-fluid col-lg-6 col-md text-justify">
@@ -40,11 +40,14 @@
       </form>
     </div>
   <!--Second Column-->
-    <div class="page container-fluid col-lg-6 col-md text-justify">
+    <div class="page container-fluid col-lg-3 col-md text-justify">
       <label for="">Click here to view the description:</label><br>
       <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#reg-modal">Desciption</button>
-      
-    </div>    
+      <div class="d-flex mt-3 justify-content-start">
+        <button  class="btn btn-primary mr-5" (click)="Edit()">Edit</button>
+        <button  class="btn btn-primary mr-5" (click)="Save()" >Save</button>
+      </div>
+      </div>    
       <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" 
          aria-hidded="true">
           <div class="modal-dialog modal-dialog-scrollable">
@@ -62,7 +65,31 @@
             </div>
           </div>
       </div>
+    </div>
 
+
+    <div class="col-lg-3">
+        <div class="accordion accordion-flush" id="Chats">
+          <div class="accordion-item bg-primary-subtle">
+            <h2 class="accordion-header ">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border:none; border-radius: 10px; background-color: rgba(0, 102, 255, 0.579);">
+                <i class="bi bi-chat-dots-fill" style="font-size: 2rem; color: white;"></i><span> Admin</span>
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse"  data-bs-parent="#Chats">
+              <div class="accordion-body" style="height: 500px; overflow: auto;">
+                <form id="form" #ChatForm="ngForm" (ngSubmit)="onSubmit()">
+                  <input id="input" name="message" [(ngModel)]="message" ><button type="submit">Send</button>
+                </form> 
+                <div *ngFor = "let chat of messages"  >
+                  <div>
+                      <label> {{chat.sender}} <br> {{chat.content}} <br> {{ chat.timestamp }}</label>
+                  </div>
+                </div>   
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
 
 

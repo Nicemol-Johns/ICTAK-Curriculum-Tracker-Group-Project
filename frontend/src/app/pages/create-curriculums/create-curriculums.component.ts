@@ -1,6 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterLinkActive } from '@angular/router';
+import { ChatServiceService } from 'src/app/chat-service.service';
+import { ChatsBackendServicesService } from 'src/app/chats-backend-services.service';
+import { Message } from 'src/assets/Message.model';
 
 @Component({
   selector: 'app-create-curriculums',
@@ -9,10 +13,82 @@ import { RouterLinkActive } from '@angular/router';
 })
 export class CreateCurriculumsComponent implements OnInit{
 
-  constructor(private router:Router){}
+  constructor(private router:Router,private chats:ChatServiceService,private chats_backup:ChatsBackendServicesService,private http:HttpClient){}
+
+  username_chat = '';
+  message = '';
+  messages_unsorted:any[] = []
+  messages:any[] = []
+  facultymessages:any[] = [];
+  adminMessages:any[] = [];
 
   ngOnInit(): void {
     this.router.navigate(['/requirements'])
+    this.username_chat = this.chats.getUser();
+    //console.log(`Faculty logged in : ${this.username_chat}`)
+    // console.log(`Messages for faculty dashboard:`)
+    // this.chats_backup.getAllMessagesAdmin().subscribe((response: any) => {
+    //   this.adminMessages = response.messages;
+    // });
+    this.chats_backup.getAllMessages().subscribe((messages: any[]) => {
+      this.facultymessages = messages[0];
+      this.adminMessages = messages[1];
+      this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
+      this.messages = this.messages_unsorted.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+      console.log('Messages:', this.messages);
+      //console.log('Faculty Messages:', this.facultymessages);
+      //console.log('Admin Messages:', this.adminMessages);
+    });
+
+     // console.log(this.facultymessages);
+     // console.log(this.adminMessages)
+  
+
   }
+
+  onToggleButtonClick(){
+    console.log('hello');
+    this.router.navigate(['/chats'])
+  }
+
+  // formatTimestamp(date:Date){
+  //   return date.toUTCString()
+  // }
+
+  formatTimestamp(date: Date): string {
+    if (!date || !(date instanceof Date)) {
+      return ''; // Return an empty string or any other default value when the date is null, undefined, or not a valid Date object.
+    }
+  
+    return date.toUTCString();
+  }
+
+  onSubmit(){
+
+    const newMessage: Message = {
+      sender: this.username_chat, 
+      content: this.message,
+      timestamp: new Date(),
+    };
+    
+    this.chats_backup.getNewMessage(newMessage).subscribe(res=>{
+      console.log(res.message)
+      this.chats_backup.getAllMessages().subscribe((messages: any[]) => {
+        this.facultymessages = messages[0];
+        this.adminMessages = messages[1];
+        this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
+        this.messages = this.messages_unsorted.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+        //console.log('Faculty Messages:', this.facultymessages);
+        //console.log('Admin Messages:', this.adminMessages);
+        console.log('Messages:', this.messages);
+      });
+    });
+
+
+    // console.log(this.facultymessages);
+    // console.log(this.adminMessages)
+    this.message = '';
+  }
+
 
 }

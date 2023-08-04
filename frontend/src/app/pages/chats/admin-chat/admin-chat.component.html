@@ -1,0 +1,12 @@
+<p>admin-chat works!</p>
+<h2>Admin Chat</h2>
+    <div class="col-4 ">
+      <form id="form" #ChatForm2="ngForm" (ngSubmit)="onSubmit2()">
+        <input id="input" name="message" [(ngModel)]="message" ><button type="submit">Send</button>
+      </form>   
+      <div *ngFor = "let chat of messages">
+        <div [ngClass]="isSentMessage(chat.sender) ? 'label-admin' : 'label-faculty'">
+            <label >{{chat.sender}} <br> {{chat.content}} <br> {{ formatTimestamp(chat.timestamp) }}</label>
+        </div>
+      </div> 
+    </div>

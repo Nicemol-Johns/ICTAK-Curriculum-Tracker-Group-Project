@@ -1,0 +1,8 @@
+.chats{
+    height: 100px;
+    color:blue
+}
+.messages{
+    width:60%;
+    border:1px solid teal
+}

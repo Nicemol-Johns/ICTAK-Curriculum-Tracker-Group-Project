@@ -34,6 +34,10 @@ import { DetailsComponent } from './pages/create-curriculums/components/details/
 import { ReferencesComponent } from './pages/create-curriculums/components/references/references.component';
 import { CurriculumFetchComponent } from './pages/faculty-dashboard/curriculum-fetch/curriculum-fetch.component';
 import { CurriculumViewComponent } from './pages/faculty-dashboard/curriculum-fetch/curriculum-view/curriculum-view.component';
+import { ChatsComponent } from './pages/chats/chats.component';
+import { AdminChatComponent } from './pages/chats/admin-chat/admin-chat.component';
+import { FacultyChatComponent } from './pages/chats/faculty-chat/faculty-chat.component';
+import { ChatServiceService } from './chat-service.service';
 
 
 @NgModule({
@@ -63,6 +67,9 @@ import { CurriculumViewComponent } from './pages/faculty-dashboard/curriculum-fe
     ReferencesComponent,
     CurriculumFetchComponent,
     CurriculumViewComponent,
+    ChatsComponent,
+    AdminChatComponent,
+    FacultyChatComponent
 
     //SearchFilterPipe
   ],
@@ -73,7 +80,7 @@ import { CurriculumViewComponent } from './pages/faculty-dashboard/curriculum-fe
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService,CurriculumQueriesService,RequirementformService],
+  providers: [AuthService,CurriculumQueriesService,RequirementformService,ChatServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

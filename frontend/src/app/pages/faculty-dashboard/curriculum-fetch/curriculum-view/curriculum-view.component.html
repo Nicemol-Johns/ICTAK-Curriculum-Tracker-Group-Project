@@ -44,27 +44,57 @@
         <label for="">Click here to view the description:</label><br>
         <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#reg-modal">Desciption</button>
         
-      </div>    
-        <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" 
-           aria-hidded="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-              <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Description</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            
+            <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title"  aria-hidded="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Description</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+
+                      <div class="modal-body">
+                        <textarea class="form-control" id="description" [disabled]="!changeText" rows="8" name="description" [(ngModel)]="data.description"></textarea>
+                      </div>
+
+                      <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" (click)="EditText()" class="btn btn-primary">Edit</button> 
+                        <button type="button" (click)="SaveText()"class="btn btn-primary">Save changes</button>
+                      </div>
                   </div>
-                  <div class="modal-body">
-                    <textarea class="form-control" id="description" [disabled]="!changeText" rows="8" name="description" [(ngModel)]="data.description"></textarea>
-                  </div>
-                  <div class="modal-footer d-flex justify-content-between">
-                    <button type="button" (click)="EditText()" class="btn btn-primary">Edit</button> 
-                    <button type="button" (click)="SaveText()"class="btn btn-primary">Save changes</button>
+               </div>
+            </div>
+
+            <div class="d-flex justify-content-end align-content-end">
+
+            
+                
+              <div class="modal fade" id="chat-modal" tabindex="-1" aria-labelledby="modal-title"  aria-hidded="true">
+                  <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                      
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Chat</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+  
+                        <div class="modal-body">
+                          
+                          
+                        </div>
+  
+                        <div class="modal-footer d-flex justify-content-between">
+                          <button type="button" (click)="EditText()" class="btn btn-primary">Edit</button> 
+                          <button type="button" (click)="SaveText()"class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                 </div>
               </div>
             </div>
-        </div>
+            
   
       </div>
-  
   
   </div>
   

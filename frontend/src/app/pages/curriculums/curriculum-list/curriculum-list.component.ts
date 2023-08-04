@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ChatServiceService } from 'src/app/chat-service.service';
 import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 })
 export class CurriculumListComponent implements OnInit{
   
-  constructor(private getCurriculum:CurriculumQueriesService,private router:Router){}
+  constructor(private getCurriculum:CurriculumQueriesService,private router:Router,private chats:ChatServiceService){}
 
   curriculums: any[] = [];
 
@@ -19,8 +20,10 @@ export class CurriculumListComponent implements OnInit{
    })
   }
 
-  view(id:any){
+  view(id:any,name:any){
     this.router.navigate(['dashboard/curriculum-list/view/'+id]);
+    console.log(`Recipient: ${name}`)
+    this.chats.setChatRecipientAdmin(name);
   }
 
   // edit(id:any){

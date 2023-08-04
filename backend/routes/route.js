@@ -4,7 +4,9 @@ const router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
-const { usersSignupLoginData,curriculumSchema, requirementSchema, curriculumSavedSchema }=require("../model/schema")
+//const { usersSignupLoginData,curriculumSchema, requirementSchema, curriculumSavedSchema,chats,chatUsersSchema,admin,chatAdminSchema,fetchMessagesFromCollections}=require("../model/schema");
+const { usersSignupLoginData,curriculumSchema, requirementSchema, curriculumSavedSchema,chats,chatUsersSchema,admin,chatAdminSchema,findCollectionWithFacultyNameChatDB,findCollectionWithFacultyNameAdminDB}=require("../model/schema");
+//const { usersSignupLoginData,curriculumSchema, requirementSchema, curriculumSavedSchema,createCollection }=require("../model/schema");
 
 router.post("/user-signup",async (req,res)=>{                              
     try{
@@ -29,7 +31,8 @@ router.post('/login', (req, res) => {
       usersSignupLoginData.findOne({ email, password })
       .then(user => {
         if (user) {
-          res.status(200).json({ message: 'Login successful',api:'/faculty-dashboard'});
+          const name = user.name;
+          res.status(200).json({ message: 'Login successful',api:'/faculty-dashboard',user:name});
         } else {
           res.status(401).json({ error: 'Invalid username or password' });
         }
@@ -143,12 +146,114 @@ router.get('/requirement/:id',async(req,res)=>{
   }
 ) 
 
+//---------------------------------------------------------------------------------------------------------
+
+// router.get('/login-faculty/:username',async (req,res)=>{
+//   try {
+//     console.log("here")
+//     let username = req.params.username;
+//     await createCollection(username);
+//     res.json({status:200})
+//   } catch (error) {
+//     console.log(error)
+//     res.json({status:400})
+//   }
+// })
+
+router.post('/send-message-faculty', async (req, res) => {
+  try {
+    console.log(`Req: ${req.body}`)
+    const { sender, content, timestamp } = req.body;
+    console.log(`Req: ${sender} ${content} ${timestamp}`)
+    const collectionName = sender; // The collection name will be the same as the sender's username
+    console.log(`collection name: ${collectionName}`)
+    const userChatModel = chats.model(collectionName, chatUsersSchema);
+    console.log(`Model: ${userChatModel}`)
+
+    // Create a new document with the message data
+    const newMessage = new userChatModel({
+      sender,
+      content,
+      timestamp
+    });
+    console.log(`New message ${newMessage}`)
+    // Save the new document to the appropriate collection
+    await newMessage.save();
+
+    res.json({ message: 'Message saved successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to save message' });
+  }
+});
+
+router.post('/send-message-admin', async (req, res) => {
+  try {
+    console.log(`Req: ${req.body}`)
+    const { sender, content, recipient, timestamp } = req.body;
+    console.log(`Req: ${sender} ${content} ${recipient} ${timestamp}`)
+    const newCollection = recipient; // The collection name will be the same as the sender's username
+    console.log(`collection name: ${newCollection}`)
+    const adminChatModel = admin.model(newCollection, chatAdminSchema);
+    console.log(`Model: ${adminChatModel}`)
+
+    // Create a new document with the message data
+    const newMessage = new adminChatModel({
+      sender,
+      content,
+      recipient,
+      timestamp
+    });
+   console.log(`New message ${newMessage}`)
+    // Save the new document to the appropriate collection
+    await newMessage.save();
+
+    res.json({ message: 'Message saved successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to save message' });
+  }
+});
 
 
+// Usage in your route handler
+router.get('/messages-all/:facultyName', async (req, res) => {
+  const facultyName = req.params.facultyName;
+  console.log(facultyName)
+
+  try {
+    if(facultyName){
+      const messages = await findCollectionWithFacultyNameChatDB(facultyName);
+      console.log(`Messages are:`)
+      console.log(messages)
+      res.json({status:200,messages:messages})
+    }
+    else{
+      res.json({messages:"Facultyname not valid"})
+    }
+  } catch (error) {
+    res.status(500).json({status:400,messages:"error"});
+  }
+});
+
+router.get('/messages-all-admin/:facultyName', async (req, res) => {
+  const facultyName = req.params.facultyName;
+  console.log(facultyName)
+
+  try {
+    if(facultyName){
+      const messages = await findCollectionWithFacultyNameAdminDB(facultyName);
+      console.log(`Messages are:`)
+      console.log(messages)
+      res.json({status:200,messages:messages})
+    }
+    else{
+      res.json({messages:"Facultyname not valid"})
+    }
+  } catch (error) {
+    res.status(500).json({status:400,messages:"error"});
+  }
+});
 
 
-
-
-
+//---------------------------------------------------------------------------------------------------------
 
 module.exports = router;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ChatServiceService } from 'src/app/chat-service.service';
 import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 import { FetchRequirementsFacultyDashboardService } from 'src/app/fetch-requirements-faculty-dashboard.service';
 
@@ -11,11 +12,13 @@ import { FetchRequirementsFacultyDashboardService } from 'src/app/fetch-requirem
 })
 export class DetailsComponent {
 
-  constructor(private queries:CurriculumQueriesService,private router:Router,private fetch:FetchRequirementsFacultyDashboardService){}
+  constructor(private queries:CurriculumQueriesService,private router:Router,private fetch:FetchRequirementsFacultyDashboardService,private chats:ChatServiceService){}
  
+  fetchName = this.chats.getUser()
+
   curriculum={
     s_no:'',
-    name:'',
+    name:this.fetchName,
     description:'',
     //reference:'',
     approvedStatus:false

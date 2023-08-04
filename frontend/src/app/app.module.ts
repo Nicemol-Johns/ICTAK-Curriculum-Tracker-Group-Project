@@ -34,6 +34,11 @@ import { DetailsComponent } from './pages/create-curriculums/components/details/
 import { ReferencesComponent } from './pages/create-curriculums/components/references/references.component';
 import { CurriculumFetchComponent } from './pages/faculty-dashboard/curriculum-fetch/curriculum-fetch.component';
 import { CurriculumViewComponent } from './pages/faculty-dashboard/curriculum-fetch/curriculum-view/curriculum-view.component';
+import { ApproveComponent } from './pages/approve/approve.component';
+import { PendingComponent } from './pages/pending/pending.component';
+import { PendingFacultyComponent } from './pages/faculty-dashboard/pending-faculty/pending-faculty.component';
+import { ApprovedFacultyComponent } from './pages/faculty-dashboard/approved-faculty/approved-faculty.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ChatsComponent } from './pages/chats/chats.component';
 import { AdminChatComponent } from './pages/chats/admin-chat/admin-chat.component';
 import { FacultyChatComponent } from './pages/chats/faculty-chat/faculty-chat.component';
@@ -67,6 +72,11 @@ import { ChatServiceService } from './chat-service.service';
     ReferencesComponent,
     CurriculumFetchComponent,
     CurriculumViewComponent,
+    ApproveComponent,
+    PendingComponent,
+    PendingFacultyComponent,
+    ApprovedFacultyComponent
+    
     ChatsComponent,
     AdminChatComponent,
     FacultyChatComponent
@@ -78,7 +88,8 @@ import { ChatServiceService } from './chat-service.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SweetAlert2Module
   ],
   providers: [AuthService,CurriculumQueriesService,RequirementformService,ChatServiceService],
   bootstrap: [AppComponent]

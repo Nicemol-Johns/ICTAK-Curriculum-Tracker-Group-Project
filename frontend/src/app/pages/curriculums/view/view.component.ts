@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChatServiceService } from 'src/app/chat-service.service';
 import { ChatsBackendServicesService } from 'src/app/chats-backend-services.service';
 import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
@@ -15,7 +15,7 @@ export class ViewComponent implements OnInit {
   Fname: string[] = [];
   faculty = ''
 
-  constructor(private api:CurriculumQueriesService,private activatedRoute:ActivatedRoute,private chats:ChatServiceService,private chats_backup:ChatsBackendServicesService){}
+  constructor(private api:CurriculumQueriesService,private activatedRoute:ActivatedRoute,private router:Router,private chats:ChatServiceService,private chats_backup:ChatsBackendServicesService){}
 
   isEditing = false;
   changeText=false;
@@ -114,7 +114,7 @@ export class ViewComponent implements OnInit {
       this.data.trainingHours = res.data.trainingHours;
       console.log(`Admin communicates with faculty`,this.data.name)
     })
-   // this.Fname = this.data.name.split(' ')
+     // this.Fname = this.data.name.split(' ')
     // console.log(`Messages for admin dashboard:`)
     // const facultyName = this.Fname[0]; // Assuming Fname contains the faculty name
      //await this.fetchMessages(facultyName);
@@ -135,8 +135,28 @@ export class ViewComponent implements OnInit {
     });
   
   }
+    approve(){
+      this.api.approveCurriculum(this.data.id).subscribe(
+        (data)=>{
+          console.log('curriculum approved');
+          alert('Aprroved successfully')
+          // this.router.navigate(['/approve']);
+        },
+        (error)=>{
+          console.error('Failed to approve curriculum',error);
+        }
+      )
+    }
+  }
 
   
    // this.router.navigate(["/dashboard/curriculum-list"])
-}
+
+
+
+  
+    
+  
+
+
 

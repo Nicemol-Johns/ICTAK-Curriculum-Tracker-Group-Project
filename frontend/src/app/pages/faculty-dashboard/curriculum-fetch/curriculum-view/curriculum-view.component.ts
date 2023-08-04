@@ -42,6 +42,7 @@ export class CurriculumViewComponent {
 
   EditText(){
     this.changeText = true;
+    
   }
   SaveText(){
     this.api.editDetails(this.data,this.data.id).subscribe(
@@ -50,6 +51,17 @@ export class CurriculumViewComponent {
       }
    );
     this.changeText = false;
+  }
+
+  editCurriculum() {
+    if (this.data.approvedStatus !== 'Approved') {
+      // If the curriculum is not approved (i.e., pending), handle the edit logic here.
+      // For example, navigate to the edit component or show a modal for editing.
+      console.log('Editing pending curriculum');
+      // Replace the following line with your logic to handle editing pending curriculum
+    } else {
+      console.log('Editing approved curriculum is not allowed');
+    }
   }
 
   ngOnInit():void{
@@ -66,9 +78,11 @@ export class CurriculumViewComponent {
       this.data.institution = res.data.institution;
       this.data.category = res.data.category;
       this.data.trainingHours = res.data.trainingHours;
-      
+      console.log('approvedStatus:', this.data.approvedStatus);
     })
 
 }
 
+
 }
+

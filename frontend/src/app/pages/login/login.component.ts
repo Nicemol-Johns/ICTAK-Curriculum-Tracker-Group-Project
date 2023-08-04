@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import Swal from 'sweetalert2';
 import { ChatServiceService } from 'src/app/chat-service.service';
 import { ChatsBackendServicesService } from 'src/app/chats-backend-services.service';
 @Component({
@@ -21,7 +22,14 @@ login(){
     console.log('login successful',response);
     this.chats.setUser(response.user);
     this.router.navigate([response.api]);
-  })  
+    Swal.fire('Success!', 'You have successfully logged in.', 'success');
+  },
+  (error) => {
+    console.log('login failed', error);
+    Swal.fire('Error!', 'Invalid username or password.', 'error');
+  }
+   
+  )  
 
 }
 }

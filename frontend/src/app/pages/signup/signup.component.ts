@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -27,10 +27,15 @@ export class SignupComponent {
     userSignup(){
       console.log(`Function called ${this.user}`)
       this._auth.signupuser(this.user).subscribe((res:any)=>{
-        console.log('Success');
-        this.router.navigate([res.api]);
-      })
+        console.log('SignUp Success');
+        this.router.navigate(['/login']);
+        Swal.fire('Success!', 'You have successfully signed up.', 'success');
+        },(error)=>{
+          console.log('SignUp Faild',error);
+          Swal.fire('Error!', 'Something went wrong with the sign-up process.', 'error');
+        })
 
     }
-  
+    
 }
+

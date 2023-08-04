@@ -30,7 +30,13 @@ export class CurriculumQueriesService {
   deleteCurriculum(id:any){
     return this.http.delete(`http://localhost:3000/curriculum-tracker/delete-curriculum/${id}`);
   }
-
+  approveCurriculum(id: any) {
+    return this.http.put(`http://localhost:3000/curriculum-tracker/approve/${id}`, {});
+  }
+  fetchPendingCurriculums() {
+    return this.http.get<any>(`http://localhost:3000/curriculum-tracker/pendingCurriculums`);
+  }
+  
 
 
 }

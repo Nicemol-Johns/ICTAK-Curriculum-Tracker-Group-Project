@@ -26,6 +26,7 @@ import { ApproveComponent } from './pages/approve/approve.component';
 import { PendingComponent } from './pages/pending/pending.component';
 import { PendingFacultyComponent } from './pages/faculty-dashboard/pending-faculty/pending-faculty.component';
 import { ApprovedFacultyComponent } from './pages/faculty-dashboard/approved-faculty/approved-faculty.component';
+import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
 //import { OperationsCurriculumComponent } from './pages/curriculums/operations-curriculum/operations-curriculum.component';
 
 //import { RequirementFormComponent } from './pages/requirement-form/requirement-form.component';
@@ -50,8 +51,7 @@ const routes: Routes = [
     ]
   },
   {path:'about-us',component:AboutUsComponent},
-
-  
+  {path:'forgot-password',component:ForgotPasswordComponent},
   {
     path: 'faculty-dashboard', component: FacultyDashboardComponent,
     children: [

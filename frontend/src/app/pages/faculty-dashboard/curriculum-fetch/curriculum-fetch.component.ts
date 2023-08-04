@@ -12,6 +12,7 @@ export class CurriculumFetchComponent {
   constructor(private getCurriculum:CurriculumQueriesService,private router:Router){}
 
   curriculums: any[] = [];
+  searchText: string='';
 
   ngOnInit(): void {
     this.getCurriculum.fetchCurriculums().subscribe((res:any)=>{

@@ -41,6 +41,7 @@ import { ApprovedFacultyComponent } from './pages/faculty-dashboard/approved-fac
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ChatServiceService } from './chat-service.service';
 import { SearchPipe } from './search.pipe';
+import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { SearchPipe } from './search.pipe';
     PendingFacultyComponent,
     ApprovedFacultyComponent,
     SearchPipe,
+    ForgotPasswordComponent,
 
     //SearchFilterPipe
   ],

@@ -3,7 +3,7 @@
 <h1 class="text-primary">Pending Approval Requests</h1> 
 <br><br><br>
 <ul class="curriculum-list">
-  <li *ngFor="let curriculum of pendingCurriculums" class="curriculum-item">
+  <li *ngFor="let curriculum of pendingCurriculums" class="curriculum-item" (click)="view(curriculum._id,curriculum.name)">
     <a (click)="view(curriculum._id,curriculum.name)" > {{ curriculum.name }} </a>
       
   </li>

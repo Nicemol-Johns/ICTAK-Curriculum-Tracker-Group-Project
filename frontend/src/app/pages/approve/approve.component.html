@@ -11,8 +11,8 @@
 <br><br><br>
 
   <ul class="curriculum-list">
-    <li *ngFor="let curriculum of approvedCurriculums" class="curriculum-item">
-     <a (click)="view(curriculum._id)" > {{ curriculum.name }} </a>
+    <li *ngFor="let curriculum of approvedCurriculums" class="curriculum-item" (click)="view(curriculum._id)">
+     <a  > {{ curriculum.name }} </a>
     </li>
   </ul>
 </div>

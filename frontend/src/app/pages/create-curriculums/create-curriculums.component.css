@@ -42,3 +42,7 @@
 .border{
   border: 8px solid #666;
 }
+
+#background{
+    background-image: url(../../../assets/pexels-mubaz-basheer-916017.jpg);
+}

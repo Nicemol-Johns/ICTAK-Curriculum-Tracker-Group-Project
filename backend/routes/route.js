@@ -172,6 +172,17 @@ router.get('/pendingCurriculums', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch pending curriculum approvals' });
   }
 });
+router.get('/my-curriculums/:user', async (req, res) => {
+  try {
+    const user = req.params.user;
+    const myCurriculums = await curriculumSavedSchema.find({name : user });
+    //res.set('Cache-Control', 'no-store');
+    res.status(200).json({ data: myCurriculums });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch pending curriculum approvals' });
+  }
+});
+
 //---------------------------------------------------------------------------------------------------------
 
 // router.get('/login-faculty/:username',async (req,res)=>{

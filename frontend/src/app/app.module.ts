@@ -43,6 +43,7 @@ import { ChatServiceService } from './chat-service.service';
 import { SearchPipe } from './search.pipe';
 import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
 import { DatePipe } from '@angular/common';
+import { MyCurriculumsComponent } from './pages/faculty-dashboard/my-curriculums/my-curriculums.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { DatePipe } from '@angular/common';
     ApprovedFacultyComponent,
     SearchPipe,
     ForgotPasswordComponent,
+    MyCurriculumsComponent,
 
     //SearchFilterPipe
   ],

@@ -5,6 +5,7 @@ import { ChatsBackendServicesService } from 'src/app/chats-backend-services.serv
 import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 import { AdminMessage } from 'src/assets/AdminMessage.model';
 import { Message } from 'src/assets/Message.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-view',
@@ -15,7 +16,7 @@ export class ViewComponent implements OnInit {
   Fname: string[] = [];
   faculty = ''
 
-  constructor(private api:CurriculumQueriesService,private activatedRoute:ActivatedRoute,private router:Router,private chats:ChatServiceService,private chats_backup:ChatsBackendServicesService){}
+  constructor(private api:CurriculumQueriesService,private activatedRoute:ActivatedRoute,private router:Router,private chats:ChatServiceService,private datePipe: DatePipe,private chats_backup:ChatsBackendServicesService){}
 
   isEditing = false;
   changeText=false;
@@ -65,12 +66,14 @@ export class ViewComponent implements OnInit {
     this.changeText = false;
   }
 
-  formatTimestamp(date: Date): string {
-    if (!date || !(date instanceof Date)) {
-      return ''; // Return an empty string or any other default value when the date is null, undefined, or not a valid Date object.
+  isSentMessage(sender:any):boolean{
+    if(sender != "Admin"){
+      return true;
     }
-  
-    return date.toUTCString();
+    else{
+      return false;
+    }
+
   }
 
   onSubmit(){
@@ -135,6 +138,11 @@ export class ViewComponent implements OnInit {
     });
   
   }
+
+  reload(){
+    this.ngOnInit();
+  }
+  
     approve(){
       this.api.approveCurriculum(this.data.id).subscribe(
         (data)=>{
@@ -148,6 +156,8 @@ export class ViewComponent implements OnInit {
       )
     }
   }
+
+
 
   
    // this.router.navigate(["/dashboard/curriculum-list"])

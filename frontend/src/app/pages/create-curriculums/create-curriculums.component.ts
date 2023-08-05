@@ -5,6 +5,8 @@ import { RouterLinkActive } from '@angular/router';
 import { ChatServiceService } from 'src/app/chat-service.service';
 import { ChatsBackendServicesService } from 'src/app/chats-backend-services.service';
 import { Message } from 'src/assets/Message.model';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-create-curriculums',
@@ -13,7 +15,7 @@ import { Message } from 'src/assets/Message.model';
 })
 export class CreateCurriculumsComponent implements OnInit{
 
-  constructor(private router:Router,private chats:ChatServiceService,private chats_backup:ChatsBackendServicesService,private http:HttpClient){}
+  constructor(private router:Router,private chats:ChatServiceService,private chats_backup:ChatsBackendServicesService,private http:HttpClient,private datePipe: DatePipe){}
 
   username_chat = '';
   message = '';
@@ -46,21 +48,23 @@ export class CreateCurriculumsComponent implements OnInit{
 
   }
 
+  reload(){
+    this.ngOnInit()
+  }
+
   onToggleButtonClick(){
     console.log('hello');
     this.router.navigate(['/chats'])
   }
-
-  // formatTimestamp(date:Date){
-  //   return date.toUTCString()
-  // }
-
-  formatTimestamp(date: Date): string {
-    if (!date || !(date instanceof Date)) {
-      return ''; // Return an empty string or any other default value when the date is null, undefined, or not a valid Date object.
-    }
   
-    return date.toUTCString();
+  isSentMessage(sender:any):boolean{
+    if(sender != "Admin"){
+      return true;
+    }
+    else{
+      return false;
+    }
+
   }
 
   onSubmit(){

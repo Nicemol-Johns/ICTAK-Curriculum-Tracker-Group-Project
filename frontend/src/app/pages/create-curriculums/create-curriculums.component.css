@@ -7,3 +7,38 @@
 #messages { list-style-type: none; margin: 0; padding: 0; }
 #messages > li { padding: 0.5rem 1rem; }
 #messages > li:nth-child(odd) { background: #efefef; }
+
+.label-faculty{
+    text-align:start;
+    font-size:small;
+    padding:5px;
+    border:1px solid wheat;
+    border-radius:15px;
+    background-color: rgba(0, 128, 128, 0.686);
+    width:100%;
+    margin:5px;
+    color:white;
+}
+
+.label-admin{
+    text-align:start;
+    font-size:small;
+    padding:5px;
+    border:1px solid rgb(54, 90, 109);
+    border-radius:15px;
+    background-color: wheat;
+    width:100%;
+    margin:5px;
+    color:grey;
+}
+
+.talk-bubble {
+  display: inline-block;
+  position: relative;
+	width: 200px;
+	height: auto;
+	/* background-color: lightyellow; */
+}
+.border{
+  border: 8px solid #666;
+}

@@ -42,7 +42,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ChatServiceService } from './chat-service.service';
 import { SearchPipe } from './search.pipe';
 import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
-
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -88,7 +88,7 @@ import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-pa
     ReactiveFormsModule,
     SweetAlert2Module
   ],
-  providers: [AuthService,CurriculumQueriesService,RequirementformService,ChatServiceService],
+  providers: [AuthService,CurriculumQueriesService,RequirementformService,ChatServiceService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,8 +20,8 @@ export class SearchPipe implements PipeTransform {
         item.trainingArea.toLowerCase().includes(searchText) ||
         item.requirementName.toLowerCase().includes(searchText) ||
         item.category.toLowerCase().includes(searchText) ||
-        item.institution.toLowerCase().includes(searchText)||
-        item.name.toLowerCase().includes(searchText)
+        item.institution.toLowerCase().includes(searchText)
+        // item.name.toLowerCase().includes(searchText)
 
       );
     });

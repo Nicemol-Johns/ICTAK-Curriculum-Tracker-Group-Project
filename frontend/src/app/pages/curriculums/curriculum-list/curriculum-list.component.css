@@ -25,6 +25,7 @@
     transform-origin: center bottom;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
   }
   
   .list-group-item:hover {

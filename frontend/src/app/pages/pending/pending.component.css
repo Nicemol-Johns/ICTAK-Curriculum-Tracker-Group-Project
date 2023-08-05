@@ -1,6 +1,4 @@
-/* Add this CSS code in your CSS file or style section of your component */
-
-/* Container for the approved curriculums */
+/* 
 .pending-curriculums {
     max-width: 800px;
     margin: 0 auto;
@@ -8,7 +6,6 @@
     margin-top: 40px;
   }
   
-  /* Heading styles */
   .pending-curriculums h1 {
     font-size: 24px;
     font-weight: bold;
@@ -16,13 +13,11 @@
     margin-bottom: 10px;
   }
   
-  /* List styles */
   .curriculum-list {
     list-style: none;
     padding: 0;
   }
   
-  /* Curriculum item styles */
   .curriculum-item {
     font-size: 18px;
     color: #555;
@@ -33,8 +28,47 @@
     border-radius: 5px;
   }
   
-  /* Hover effect for curriculum items */
   .curriculum-item:hover {
     background-color: #e6e6e6;
+  }
+   */
+
+
+   .card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-title {
+    color: #007BFF;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .curriculum-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .curriculum-item {
+    background-color: rgba(202, 195, 156, 0.8);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 20px;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .curriculum-item:hover {
+    background-color: rgba(202, 195, 156, 1);
   }
   

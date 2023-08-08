@@ -7,6 +7,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     margin-right: 900px;
+   height: 220px;
+    
   }
   
   .card:hover {
@@ -113,4 +115,3 @@
   border-color: #007bff;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
-

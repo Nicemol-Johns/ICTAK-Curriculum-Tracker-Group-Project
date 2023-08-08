@@ -6,8 +6,9 @@
 <div class="container mt-5 px-2">
     <div class="row">
      <div class="col-3" *ngFor="let form of list | search:searchText">
+      <div class="card mb-4" style="width: 18rem;">
       <a routerLink="/faculty-dashboard/curriculum-create" style="text-decoration:none">
-          <div class="card mb-4" style="width: 18rem;">
+          
             <div class="card-body" (click)="getRequirementFormById(form._id)">
               <h5 class="card-title text-center">Requirement: {{form.requirementName}}</h5>
               <h6 class="card-text">Training Area: {{form.trainingArea}}</h6>
@@ -15,9 +16,10 @@
               <h6 class="card-text">Category: {{form.category}}</h6>
               <h6 class="card-text">No. of hours of training:{{form.trainingHours}}</h6>
             </div>
-          </div>
         </a>
-     </div>
+        <span class="icon"><h6 *ngIf="form.referenceLink"><a [href]="form.referenceLink"><i style="font-size:15px; color:blue" class="fa">&#xf06e;</i></a></h6></span>
+      </div>
+      </div>
     </div>
 </div>
 

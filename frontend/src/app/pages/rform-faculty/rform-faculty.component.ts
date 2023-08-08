@@ -28,4 +28,6 @@ export class RformFacultyComponent {
       this.fetch.setRequirements(res.data)
     })
   }
+
+  
 }

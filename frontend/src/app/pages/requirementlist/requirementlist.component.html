@@ -19,6 +19,7 @@
                <h6 class="card-text">Institution/Corporate office: {{form.institution}}</h6>
                <h6 class="card-text">Category: {{form.category}}</h6>
                <h6 class="card-text">No. of hours of training:{{form.trainingHours}}</h6>
+               <h6 *ngIf="form.referenceLink"><a [href]="form.referenceLink"><i style="font-size:15px; color:blue" class="fa">&#xf06e;</i></a></h6>
              
                
              

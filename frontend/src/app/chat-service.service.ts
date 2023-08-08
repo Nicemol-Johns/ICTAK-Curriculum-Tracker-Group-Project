@@ -8,11 +8,15 @@ import { ChatsBackendServicesService } from './chats-backend-services.service';
 })
 export class ChatServiceService {
 
+  private reqname='';
+
   private username = '';
 
   private recipient = '';
 
   private allMessages:any[] = [];
+
+  private Reqname = '';
 
   // private FacultyMessages:any[] = [];
 
@@ -43,6 +47,22 @@ export class ChatServiceService {
 //   return this.facultyMessages;
 //  }
 //------------------------------------------------
+  setReqname(name:any){ //for faculty dashboard
+    this.reqname = name
+    console.log(this.reqname)   //Gives the req.name of the req.form currently opened for curriculum generation
+  }
+
+  getReqname(){ // for faculty dashboard
+    return this.reqname;
+  }
+
+  setReqName(name:any){
+    this.Reqname=name;
+  }
+
+  getReqName(){
+    return this.Reqname;
+  }
    
    setUser(user:any){
     this.username = user;

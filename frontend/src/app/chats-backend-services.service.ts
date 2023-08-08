@@ -59,15 +59,16 @@ export class ChatsBackendServicesService {
       const facultyname = this.chats.getUser();
       const collectionSuffix = "s"
       const tempname = facultyname.toLowerCase();
-      const facultyName = tempname.concat(collectionSuffix)
+      const facultyName = tempname.concat(collectionSuffix);
+      const reqname = this.chats.getReqname();
       console.log(`This is the service file: ${facultyName}`)
-      console.log(facultyName)
-      const facultyMessages$ = this.http.get<any>(`http://localhost:3000/curriculum-tracker/messages-all/${facultyName}`)
+      console.log(facultyName,reqname)
+      const facultyMessages$ = this.http.get<any>(`http://localhost:3000/curriculum-tracker/messages-all?facultyname=${facultyName}&requirementName=${reqname}`)
       .pipe(
         map((res: any) => res.messages)
       );
   
-    const adminMessages$ = this.http.get<any>(`http://localhost:3000/curriculum-tracker/messages-all-admin/${facultyName}`)
+    const adminMessages$ = this.http.get<any>(`http://localhost:3000/curriculum-tracker/messages-all-admin?facultyname=${facultyName}&requirementName=${reqname}`)
       .pipe(
         map((res: any) => res.messages)
       );
@@ -93,21 +94,22 @@ export class ChatsBackendServicesService {
     
     getAllMessagesAdmin(){
       const facultyname = this.chats.getChatRecipientAdmin();
-      const collectionSuffix = "s"
-      const tempname = facultyname.toLowerCase();
-      const facultyName = tempname.concat(collectionSuffix)
-      console.log(`This is the service file: ${facultyName}`)
-      console.log(facultyName)
-      //return this.http.get(`http://localhost:3000/curriculum-tracker/messages-all-admin/${facultyName}`)
-      const facultyMessages$ = this.http.get<any>(`http://localhost:3000/curriculum-tracker/messages-all/${facultyName}`)
-      .pipe(
-        map((res: any) => res.messages)
-      );
-  
-    const adminMessages$ = this.http.get<any>(`http://localhost:3000/curriculum-tracker/messages-all-admin/${facultyName}`)
-      .pipe(
-        map((res: any) => res.messages)
-      );
+          const collectionSuffix = "s"
+          const tempname = facultyname.toLowerCase();
+          const reqname = this.chats.getReqName();
+          const facultyName = tempname.concat(collectionSuffix)
+          console.log(`This is the service file: ${facultyName}`)
+          console.log(facultyName,reqname)
+          //return this.http.get(`http://localhost:3000/curriculum-tracker/messages-all-admin/${facultyName}`)
+          const facultyMessages$ = this.http.get<any>(`http://localhost:3000/curriculum-tracker/messages-all?facultyname=${facultyName}&requirementName=${reqname}`)
+          .pipe(
+            map((res: any) => res.messages)
+          );
+      
+        const adminMessages$ = this.http.get<any>(`http://localhost:3000/curriculum-tracker/messages-all-admin?facultyname=${facultyName}&requirementName=${reqname}`)
+          .pipe(
+            map((res: any) => res.messages)
+          );
     return forkJoin([facultyMessages$, adminMessages$]);
     }
   

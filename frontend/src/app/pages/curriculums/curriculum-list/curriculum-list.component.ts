@@ -20,10 +20,11 @@ export class CurriculumListComponent implements OnInit{
    })
   }
 
-  view(id:any,name:any){
+  view(id:any,name:any,Reqname:any){
     this.router.navigate(['dashboard/curriculum-list/view/'+id]);
     console.log(`Recipient: ${name}`)
     this.chats.setChatRecipientAdmin(name);
+    this.chats.setReqName(Reqname);
   }
 
   // edit(id:any){

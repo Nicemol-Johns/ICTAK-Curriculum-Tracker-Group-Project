@@ -17,6 +17,7 @@ export class CreateCurriculumsComponent implements OnInit{
 
   constructor(private router:Router,private chats:ChatServiceService,private chats_backup:ChatsBackendServicesService,private http:HttpClient,private datePipe: DatePipe){}
 
+  reqname = '';
   username_chat = '';
   message = '';
   messages_unsorted:any[] = []
@@ -25,6 +26,7 @@ export class CreateCurriculumsComponent implements OnInit{
   adminMessages:any[] = [];
 
   ngOnInit(): void {
+    this.reqname = this.chats.getReqname()
     this.router.navigate(['/requirements'])
     this.username_chat = this.chats.getUser();
     //console.log(`Faculty logged in : ${this.username_chat}`)
@@ -72,6 +74,7 @@ export class CreateCurriculumsComponent implements OnInit{
     const newMessage: Message = {
       sender: this.username_chat, 
       content: this.message,
+      requirementName:this.reqname,
       timestamp: new Date(),
     };
     

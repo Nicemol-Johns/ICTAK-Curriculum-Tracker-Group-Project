@@ -4,6 +4,21 @@ const router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
 
+const {google} = require('googleapis')
+const multer = require('multer')
+const fs = require('fs')
+const path = require('path')
+const keyFileContents = fs.readFileSync('ictak03-73387119ae0d.json');
+const credentials = JSON.parse(keyFileContents);
+const storage=multer.diskStorage({
+    destination:"uploads",
+    filename:function(req,file,callback){
+        const extension = file.originalname.split('.').pop()
+        callback(null, `${file.fieldname}-${Date.now()}.${extension}`)
+    }
+})
+const upload = multer({storage:storage})
+
 //const { usersSignupLoginData,curriculumSchema, requirementSchema, curriculumSavedSchema,chats,chatUsersSchema,admin,chatAdminSchema,fetchMessagesFromCollections}=require("../model/schema");
 const { usersSignupLoginData,curriculumSchema, requirementSchema, curriculumSavedSchema,chats,chatUsersSchema,admin,chatAdminSchema,findCollectionWithFacultyNameChatDB,findCollectionWithFacultyNameAdminDB}=require("../model/schema");
 //const { usersSignupLoginData,curriculumSchema, requirementSchema, curriculumSavedSchema,createCollection }=require("../model/schema");
@@ -113,11 +128,56 @@ router.post('/login', (req, res) => {
 
 
 
-router.post('/rform', async (req, res) => {
+router.post('/rform', upload.array('files'),async (req, res) => {
   try {
-    const newRequirement = req.body;
-    const createdRequirement = await requirementSchema.create(newRequirement);
-    res.status(201).json({ data: createdRequirement, message: 'Requirement created successfully' });
+
+      console.log(req.body)
+
+
+     const Files = req.files
+
+      const auth = new google.auth.GoogleAuth({
+        credentials,
+        scopes:['https://www.googleapis.com/auth/drive']
+      })
+
+      const drive = google.drive({
+        version:'v3',
+        auth
+      }) 
+      const uploadFiles = []
+      let webViewLink;
+       // const file = req.files
+        for (const file of Files){
+          console.log("File",file)
+          console.log(file.originalname)
+          console.log(file.mimetype)
+          const response =  await drive.files.create({
+            requestBody:{
+              name:file.originalname,
+              mimetype:file.mimetype,
+              parents:['1td9NQOCq8DBbM6KUrNGJ98uYm16uJb5A']
+            },
+            media:{
+              body:fs.createReadStream(file.path)
+            }
+          })
+          const fileId = response.data.id; 
+          webViewLink = `https://drive.google.com/file/d/${fileId}/view`;
+        }
+        const {requirementName, trainingArea, institution, category, trainingHours, referenceLink } = req.body
+        const newRequirement = new requirementSchema({
+          requirementName:requirementName,
+          trainingArea:trainingArea,
+          institution:institution,
+          category:category,
+          trainingHours:trainingHours,
+          referenceLink:webViewLink
+        })
+
+    const createdRequirement = await newRequirement.save()
+    console.log(createdRequirement)
+    res.status(201).json({ data: createdRequirement, message: 'Requirement created successfully'});
   } catch (error) {
     res.status(500).json({ error: 'Failed to create requirement' });
   }

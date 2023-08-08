@@ -12,8 +12,14 @@ export class RequirementformService {
   constructor(private http:HttpClient) { }
   
   addRequirement(requirementData: any): Observable<any> {
+    console.log(requirementData)
     return this.http.post<any>(`${this.baseUrl}/rform`, requirementData);
   }
+
+  // addRequirementWithFile(requirementDataWithFile: any): Observable<any> {
+  //   console.log(requirementDataWithFile)
+  //   return this.http.post<any>(`${this.baseUrl}/rform-file`, requirementDataWithFile);
+  // }
 
   getRequirements(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/rlist`);

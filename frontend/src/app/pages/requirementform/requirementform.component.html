@@ -42,6 +42,11 @@
     <input type="number" id="trainingHours" name="trainingHours" formControlName="trainingHours">
   </div>
 
+  <div>
+    <label for="trainingHours">Upload Files:</label>
+    <input type="file" #fileInput multiple (change)="handleFileSelect(fileInput)" name="files" formControlName="files">
+  </div>
+
   <button type="submit">Submit</button>
 </form>
 <router-outlet></router-outlet>

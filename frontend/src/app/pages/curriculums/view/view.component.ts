@@ -27,8 +27,6 @@ export class ViewComponent implements OnInit {
   facultymessages:any[] = [];
   adminMessages:any[] = [];
 
-  Reqname = ''
-
   data = {
     id:'',
     s_no: '',
@@ -85,7 +83,6 @@ export class ViewComponent implements OnInit {
       sender : "Admin",
       content:this.message,
       recipient:this.Fname[0],
-      requirementName:this.Reqname,
       timestamp:new Date()
     };
     console.log(newMessage)
@@ -130,11 +127,8 @@ export class ViewComponent implements OnInit {
     //   } catch (error) {
     //     console.error('Error while fetching messages:', error);
     //   }
-    this.Reqname = this.chats.getReqName()
-    console.log(this.Reqname)
     this.chats_backup.getAllMessagesAdmin().subscribe((messages: any[]) => {
       this.facultymessages = messages[0];
-      console.log(this.facultymessages)
       this.adminMessages = messages[1];
       this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
       this.messages = this.messages_unsorted.sort((a, b) => b.timestamp.localeCompare(a.timestamp));

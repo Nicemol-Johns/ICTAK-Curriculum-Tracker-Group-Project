@@ -200,8 +200,8 @@ router.get('/my-curriculums/:user', async (req, res) => {
 router.post('/send-message-faculty', async (req, res) => {
   try {
     console.log(`Req: ${req.body}`)
-    const { sender, content,requirementName, timestamp } = req.body;
-    console.log(`Req: ${sender} ${content} ${requirementName} ${timestamp}`)
+    const { sender, content, timestamp } = req.body;
+    console.log(`Req: ${sender} ${content} ${timestamp}`)
     const collectionName = sender; // The collection name will be the same as the sender's username
     console.log(`collection name: ${collectionName}`)
     const userChatModel = chats.model(collectionName, chatUsersSchema);
@@ -211,7 +211,6 @@ router.post('/send-message-faculty', async (req, res) => {
     const newMessage = new userChatModel({
       sender,
       content,
-      requirementName,
       timestamp
     });
     console.log(`New message ${newMessage}`)
@@ -227,8 +226,8 @@ router.post('/send-message-faculty', async (req, res) => {
 router.post('/send-message-admin', async (req, res) => {
   try {
     console.log(`Req: ${req.body}`)
-    const { sender, content, recipient, requirementName, timestamp } = req.body;
-    console.log(`Req: ${sender} ${content} ${recipient} ${requirementName} ${timestamp}`)
+    const { sender, content, recipient, timestamp } = req.body;
+    console.log(`Req: ${sender} ${content} ${recipient} ${timestamp}`)
     const newCollection = recipient; // The collection name will be the same as the sender's username
     console.log(`collection name: ${newCollection}`)
     const adminChatModel = admin.model(newCollection, chatAdminSchema);
@@ -239,7 +238,6 @@ router.post('/send-message-admin', async (req, res) => {
       sender,
       content,
       recipient,
-      requirementName,
       timestamp
     });
    console.log(`New message ${newMessage}`)
@@ -254,14 +252,13 @@ router.post('/send-message-admin', async (req, res) => {
 
 
 // Usage in your route handler
-router.get('/messages-all', async (req, res) => {
-  const facultyName = req.query.facultyname;
-  const requirementName = req.query.requirementName;
-  console.log(facultyName,requirementName);
+router.get('/messages-all/:facultyName', async (req, res) => {
+  const facultyName = req.params.facultyName;
+  console.log(facultyName)
 
   try {
     if(facultyName){
-      const messages = await findCollectionWithFacultyNameChatDB(facultyName,requirementName);
+      const messages = await findCollectionWithFacultyNameChatDB(facultyName);
       console.log(`Messages are:`)
       console.log(messages)
       res.json({status:200,messages:messages})
@@ -274,14 +271,13 @@ router.get('/messages-all', async (req, res) => {
   }
 });
 
-router.get('/messages-all-admin', async (req, res) => {
-  const facultyName = req.query.facultyname;
-  const requirementName = req.query.requirementName;
-  console.log(facultyName,requirementName);
+router.get('/messages-all-admin/:facultyName', async (req, res) => {
+  const facultyName = req.params.facultyName;
+  console.log(facultyName)
 
   try {
     if(facultyName){
-      const messages = await findCollectionWithFacultyNameAdminDB(facultyName,requirementName);
+      const messages = await findCollectionWithFacultyNameAdminDB(facultyName);
       console.log(`Messages are:`)
       console.log(messages)
       res.json({status:200,messages:messages})

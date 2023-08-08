@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { RequirementformService } from 'src/app/requirementform.service';
 import { CommonModule } from '@angular/common';
 import { FetchRequirementsFacultyDashboardService } from 'src/app/fetch-requirements-faculty-dashboard.service';
-import { CreateCurriculumsComponent } from '../create-curriculums/create-curriculums.component';
-import { ChatServiceService } from 'src/app/chat-service.service';
 
 @Component({
   selector: 'app-rform-faculty',
@@ -14,7 +12,7 @@ import { ChatServiceService } from 'src/app/chat-service.service';
 export class RformFacultyComponent {
   list:any[]=[];
   searchText: string='';
-  constructor(private router:Router,private api:RequirementformService,private fetch:FetchRequirementsFacultyDashboardService, private chats:ChatServiceService){}
+  constructor(private router:Router,private api:RequirementformService,private fetch:FetchRequirementsFacultyDashboardService){}
 
   ngOnInit(){
     this.api.getRequirements().subscribe((res:any)=>{
@@ -23,12 +21,11 @@ export class RformFacultyComponent {
     )
   }
 
-  getRequirementFormById(id:any,reqname:any){
+  getRequirementFormById(id:any){
     //console.log(id)
     this.api.getRequirementById(id).subscribe((res:any)=>{
       //console.log(res.data)
       this.fetch.setRequirements(res.data)
-    });
-    this.chats.setReqname(reqname)
+    })
   }
 }

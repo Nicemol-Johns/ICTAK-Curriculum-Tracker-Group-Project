@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const secretKey = 'ICTAK';
 
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
@@ -41,13 +43,15 @@ router.post('/login', (req, res) => {
     const { email, password } = req.body;
     console.log(email,password)
     if(email==="admin@org.in" && password==="admin123"){
-      res.status(200).json({ message: 'Admin Login successful',api:'/dashboard'});
+      const token = jwt.sign({email},secretKey);
+      res.status(200).json({ token, role:'admin', message: 'Admin Login successful',api:'/dashboard'});
     }else{
       usersSignupLoginData.findOne({ email, password })
       .then(user => {
         if (user) {
           const name = user.name;
-          res.status(200).json({ message: 'Login successful',api:'/faculty-dashboard',user:name});
+          const token =jwt.sign({email:user.email}, secretKey)
+          res.status(200).json({token, role:'user', message: 'Login successful',api:'/faculty-dashboard',user:name});
         } else {
           res.status(401).json({ error: 'Invalid username or password' });
         }

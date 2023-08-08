@@ -9,7 +9,7 @@
       <div class="card mb-4" style="width: 18rem;">
       <a routerLink="/faculty-dashboard/curriculum-create" style="text-decoration:none">
           
-            <div class="card-body" (click)="getRequirementFormById(form._id)">
+            <div class="card-body" (click)="getRequirementFormById(form._id,form.requirementName)">
               <h5 class="card-title text-center">Requirement: {{form.requirementName}}</h5>
               <h6 class="card-text">Training Area: {{form.trainingArea}}</h6>
               <h6 class="card-text">Institution/Corporate office: {{form.institution}}</h6>

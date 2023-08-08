@@ -17,7 +17,6 @@ export class CreateCurriculumsComponent implements OnInit{
 
   constructor(private router:Router,private chats:ChatServiceService,private chats_backup:ChatsBackendServicesService,private http:HttpClient,private datePipe: DatePipe){}
 
-  reqname = ''
   username_chat = '';
   message = '';
   messages_unsorted:any[] = []
@@ -39,19 +38,15 @@ export class CreateCurriculumsComponent implements OnInit{
       this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
       this.messages = this.messages_unsorted.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
       console.log('Messages:', this.messages);
-      console.log('Faculty Messages:', this.facultymessages);
-      console.log('Admin Messages:', this.adminMessages);
+      //console.log('Faculty Messages:', this.facultymessages);
+      //console.log('Admin Messages:', this.adminMessages);
     });
 
      // console.log(this.facultymessages);
      // console.log(this.adminMessages)
-     this.reqname = this.chats.getReqname()
-     console.log(this.reqname)
   
 
   }
-
-  
 
   reload(){
     this.ngOnInit()
@@ -77,7 +72,6 @@ export class CreateCurriculumsComponent implements OnInit{
     const newMessage: Message = {
       sender: this.username_chat, 
       content: this.message,
-      requirementName:this.reqname, // gives the current requirement name of the form for curriculum generation
       timestamp: new Date(),
     };
     
@@ -88,8 +82,8 @@ export class CreateCurriculumsComponent implements OnInit{
         this.adminMessages = messages[1];
         this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
         this.messages = this.messages_unsorted.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
-        console.log('Faculty Messages:', this.facultymessages);
-        console.log('Admin Messages:', this.adminMessages);
+        //console.log('Faculty Messages:', this.facultymessages);
+        //console.log('Admin Messages:', this.adminMessages);
         console.log('Messages:', this.messages);
       });
     });

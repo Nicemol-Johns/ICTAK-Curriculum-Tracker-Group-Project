@@ -133,10 +133,6 @@ const chatUsersSchema=mongoose.Schema({
         type:String,
         required:true,
     },
-    requirementName:{
-        type:String,
-        required:true,
-    },
     timestamp:{
         type:String,
         required:true
@@ -167,10 +163,6 @@ const chatAdminSchema=mongoose.Schema({
         type:String,
         required:true,
     },
-    requirementName:{
-        type:String,
-        required:true,
-    },
     timestamp:{
         type:String,
         required:true
@@ -178,7 +170,7 @@ const chatAdminSchema=mongoose.Schema({
 });
 
 //Find the collections with the facultyname from the admin database to get the messages from the admin to the faculty
-async function findCollectionWithFacultyNameChatDB(facultyName,requirementName) {
+async function findCollectionWithFacultyNameChatDB(facultyName) {
     try {
         console.log(facultyName)
       const collections = await chats.db.listCollections().toArray();
@@ -186,7 +178,7 @@ async function findCollectionWithFacultyNameChatDB(facultyName,requirementName) 
       const matchingCollection = collections.find((collection) => collection.name === facultyName);
       console.log("matching Collection",matchingCollection)
       const facultyChatModel = chats.model(matchingCollection.name, chatUsersSchema);       
-      const messages = await facultyChatModel.find({requirementName:requirementName});
+      const messages = await facultyChatModel.find({});
       //console.log("Messages",Messages)
       console.log(messages)
       return messages;
@@ -195,7 +187,7 @@ async function findCollectionWithFacultyNameChatDB(facultyName,requirementName) 
       return [];
     }
   }
-async function findCollectionWithFacultyNameAdminDB(facultyName,requirementName) {
+async function findCollectionWithFacultyNameAdminDB(facultyName) {
     try {
         console.log(facultyName)
       const collections = await admin.db.listCollections().toArray();
@@ -203,7 +195,7 @@ async function findCollectionWithFacultyNameAdminDB(facultyName,requirementName)
       const matchingCollection = collections.find((collection) => collection.name === facultyName);
       console.log(matchingCollection)
       const adminChatModel = admin.model(matchingCollection.name, chatAdminSchema);       
-      const messages = await adminChatModel.find({requirementName:requirementName});
+      const messages = await adminChatModel.find({});
       //const Messages = [...messages]
       //console.log("Messages",Messages)
       //console.log(Messages)

@@ -62,7 +62,11 @@ body {
   line-height: 1.5;
   color: #6B6A75;
   text-align: left;
-  background-color: #FFFFFF;
+  /* background-color: #FFFFFF; */
+  background-image: url("/frontend/src/assets/20236082_V2109_020.jpg");
+  background-size: 100% ;  
+  background-size: cover;
+
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {

@@ -13,7 +13,7 @@
 
 
 <div class="pending-curriculums card">
-  <h1 class="card-title text-primary">Pending Approval Requests</h1>
+  <h3 class="card-title text-primary">Pending Approval Requests</h3>
   <div class="card-body">
     <ul class="curriculum-list">
       <li *ngFor="let curriculum of pendingCurriculums" class="curriculum-item card" (click)="view(curriculum._id, curriculum.name)">

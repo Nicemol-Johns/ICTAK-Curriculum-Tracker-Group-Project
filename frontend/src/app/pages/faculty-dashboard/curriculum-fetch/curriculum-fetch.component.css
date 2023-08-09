@@ -113,7 +113,7 @@
   }
   
   .list-group-item {
-    background-color: rgba(202, 195, 156, 0.39);
+    background-color: rgba(118, 205, 255, 0.664);
     margin-bottom: 15px;
     border: none;
     border-radius: 10px;
@@ -124,7 +124,8 @@
   }
   
   .list-group-item:hover {
-    background-color: rgba(202, 195, 156, 0.8);
+    background-color: rgba(136, 211, 255, 0.664);
+    border: 1px solid rgb(44, 170, 255);
     transform: scale(1.05);
   }
   

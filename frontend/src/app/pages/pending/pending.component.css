@@ -74,6 +74,7 @@
    */
 
    .card {
+
     background-color: #f8f9fa;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -84,15 +85,15 @@
     cursor: pointer;
   }
   
-  .card:hover {
+  /* .card:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+  } */
   
   .card-title {
     color: #007BFF;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    font-size: 2.0rem;
+    margin-bottom: 30px;
     animation: fadeInUp 1s ease-out;
   }
   
@@ -102,7 +103,7 @@
   }
   
   .curriculum-item {
-    background-color: rgba(202, 195, 156, 0.8);
+    background-color: rgba(149, 204, 255, 0.61);
     border-radius: 10px;
     margin-bottom: 15px;
     padding: 20px;
@@ -111,7 +112,8 @@
   }
   
   .curriculum-item:hover {
-    background-color: rgba(202, 195, 156, 1);
+    background-color: rgba(45, 143, 235, 0.452);
+  border: 1px solid #007BFF;
     transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }

@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const secretKey = 'ICTAK';
 
 router.use(express.json());
 router.use(express.urlencoded({extended:true}));
@@ -41,13 +43,15 @@ router.post('/login', (req, res) => {
     const { email, password } = req.body;
     console.log(email,password)
     if(email==="admin@org.in" && password==="admin123"){
-      res.status(200).json({ message: 'Admin Login successful',api:'/dashboard'});
+      const token = jwt.sign({email},secretKey);
+      res.status(200).json({ token, role:'admin', message: 'Admin Login successful',api:'/dashboard'});
     }else{
       usersSignupLoginData.findOne({ email, password })
       .then(user => {
         if (user) {
           const name = user.name;
-          res.status(200).json({ message: 'Login successful',api:'/faculty-dashboard',user:name});
+          const token =jwt.sign({email:user.email}, secretKey)
+          res.status(200).json({token, role:'user', message: 'Login successful',api:'/faculty-dashboard',user:name});
         } else {
           res.status(401).json({ error: 'Invalid username or password' });
         }
@@ -147,6 +151,7 @@ router.post('/rform', upload.array('files'),async (req, res) => {
       }) 
       const uploadFiles = []
       let webViewLink;
+      let fileId;
        // const file = req.files
         for (const file of Files){
           console.log("File",file)
@@ -162,7 +167,8 @@ router.post('/rform', upload.array('files'),async (req, res) => {
               body:fs.createReadStream(file.path)
             }
           })
-          const fileId = response.data.id; 
+          fileId = response.data.id; 
+          console.log(fileId)
           webViewLink = `https://drive.google.com/file/d/${fileId}/view`;
         }
         const {requirementName, trainingArea, institution, category, trainingHours, referenceLink } = req.body
@@ -172,7 +178,8 @@ router.post('/rform', upload.array('files'),async (req, res) => {
           institution:institution,
           category:category,
           trainingHours:trainingHours,
-          referenceLink:webViewLink
+          referenceLink:webViewLink,
+          referenceLinkID:fileId
         })
 
     const createdRequirement = await newRequirement.save()
@@ -260,17 +267,18 @@ router.get('/my-curriculums/:user', async (req, res) => {
 router.post('/send-message-faculty', async (req, res) => {
   try {
     console.log(`Req: ${req.body}`)
-    const { sender, content, timestamp } = req.body;
-    console.log(`Req: ${sender} ${content} ${timestamp}`)
+    const { sender, content, requirementName, timestamp } = req.body;
+    console.log(`Req: ${sender} ${content} ${requirementName} ${timestamp}`)
     const collectionName = sender; // The collection name will be the same as the sender's username
     console.log(`collection name: ${collectionName}`)
-    const userChatModel = chats.model(collectionName, chatUsersSchema);
+    const userChatModel = chats.model(collectionName, chatUsersSchema,collectionName);
     console.log(`Model: ${userChatModel}`)
 
     // Create a new document with the message data
     const newMessage = new userChatModel({
       sender,
       content,
+      requirementName,
       timestamp
     });
     console.log(`New message ${newMessage}`)
@@ -286,11 +294,11 @@ router.post('/send-message-faculty', async (req, res) => {
 router.post('/send-message-admin', async (req, res) => {
   try {
     console.log(`Req: ${req.body}`)
-    const { sender, content, recipient, timestamp } = req.body;
-    console.log(`Req: ${sender} ${content} ${recipient} ${timestamp}`)
+    const { sender, content, recipient,requirementName, timestamp } = req.body;
+    console.log(`Req: ${sender} ${content} ${recipient} ${requirementName} ${timestamp}`)
     const newCollection = recipient; // The collection name will be the same as the sender's username
     console.log(`collection name: ${newCollection}`)
-    const adminChatModel = admin.model(newCollection, chatAdminSchema);
+    const adminChatModel = admin.model(newCollection, chatAdminSchema,newCollection);
     console.log(`Model: ${adminChatModel}`)
 
     // Create a new document with the message data
@@ -298,6 +306,7 @@ router.post('/send-message-admin', async (req, res) => {
       sender,
       content,
       recipient,
+      requirementName,
       timestamp
     });
    console.log(`New message ${newMessage}`)
@@ -312,13 +321,14 @@ router.post('/send-message-admin', async (req, res) => {
 
 
 // Usage in your route handler
-router.get('/messages-all/:facultyName', async (req, res) => {
-  const facultyName = req.params.facultyName;
+router.get('/messages-all', async (req, res) => {
+  const facultyName = req.query.facultyname;
+  const requirementName = req.query.requirementName;
   console.log(facultyName)
 
   try {
     if(facultyName){
-      const messages = await findCollectionWithFacultyNameChatDB(facultyName);
+      const messages = await findCollectionWithFacultyNameChatDB(facultyName,requirementName);
       console.log(`Messages are:`)
       console.log(messages)
       res.json({status:200,messages:messages})
@@ -331,13 +341,14 @@ router.get('/messages-all/:facultyName', async (req, res) => {
   }
 });
 
-router.get('/messages-all-admin/:facultyName', async (req, res) => {
-  const facultyName = req.params.facultyName;
+router.get('/messages-all-admin', async (req, res) => {
+  const facultyName = req.query.facultyname;
+  const requirementName = req.query.requirementName;
   console.log(facultyName)
 
   try {
     if(facultyName){
-      const messages = await findCollectionWithFacultyNameAdminDB(facultyName);
+      const messages = await findCollectionWithFacultyNameAdminDB(facultyName,requirementName);
       console.log(`Messages are:`)
       console.log(messages)
       res.json({status:200,messages:messages})

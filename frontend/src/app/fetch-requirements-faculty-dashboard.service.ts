@@ -12,7 +12,9 @@ export class FetchRequirementsFacultyDashboardService {
     trainingArea:'',
     institution:'',
     category:'',
-    trainingHours:''
+    trainingHours:'',
+    referenceLink:'',
+    referenceLinkID:''
   }
   
 
@@ -23,6 +25,8 @@ export class FetchRequirementsFacultyDashboardService {
      this.list.institution = list.institution;
      this.list.category = list.category;
      this.list.trainingHours = list.trainingHours;
+     this.list.referenceLink = list.referenceLink;
+     this.list.referenceLinkID = list.referenceLinkID
      //console.log(`SET METHOD ${this.list}`)
   }
 

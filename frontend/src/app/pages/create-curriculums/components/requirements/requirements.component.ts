@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchRequirementsFacultyDashboardService } from 'src/app/fetch-requirements-faculty-dashboard.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-requirements',
@@ -14,13 +16,27 @@ export class RequirementsComponent implements OnInit {
     trainingArea:'',
     institution:'',
     category:'',
-    trainingHours:''
+    trainingHours:'',
+    referenceLink:'',
+    referenceLinkID:''
   }
- 
-  constructor(private fetch:FetchRequirementsFacultyDashboardService){}
+  isReferenceLinkAvailable = false;
+
+  constructor(private fetch:FetchRequirementsFacultyDashboardService,
+    private sanitizer: DomSanitizer){}
 
   ngOnInit(): void {
-    this.list = this.fetch.getRequirements()
+    this.list = this.fetch.getRequirements();
+    console.log(this.list.referenceLinkID)
+    this.isReferenceLinkAvailable = !!this.list.referenceLinkID;
+  }
+
+    formURL(referenceLinkID: string): SafeResourceUrl {
+      console.log(referenceLinkID)
+      const url = `https://drive.google.com/file/d/${referenceLinkID}/preview`;
+      console.log(url)
+      return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    
   }
 
   

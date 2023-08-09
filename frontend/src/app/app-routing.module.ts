@@ -28,6 +28,8 @@ import { PendingFacultyComponent } from './pages/faculty-dashboard/pending-facul
 import { ApprovedFacultyComponent } from './pages/faculty-dashboard/approved-faculty/approved-faculty.component';
 import { ForgotPasswordComponent } from './pages/login/forgot-password/forgot-password.component';
 import { MyCurriculumsComponent } from './pages/faculty-dashboard/my-curriculums/my-curriculums.component';
+import { authadminGuard } from './authadmin.guard';
+import { authfacultyGuard } from './authfaculty.guard';
 //import { OperationsCurriculumComponent } from './pages/curriculums/operations-curriculum/operations-curriculum.component';
 
 //import { RequirementFormComponent } from './pages/requirement-form/requirement-form.component';
@@ -38,8 +40,9 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signupstatus',component:SignupStatusComponent},
   //Admin Dashboard
-  {path:'dashboard', component:DashboardComponent,
-    children:[
+  {path:'dashboard',canActivate:[authadminGuard], component:DashboardComponent,
+   
+  children:[
       {path:'requirement-list',component:RequirementlistComponent},
       { path: 'requirement-list/rform', component: RequirementformComponent },
       {path:'curriculum-list',component:CurriculumListComponent},
@@ -54,7 +57,8 @@ const routes: Routes = [
   {path:'about-us',component:AboutUsComponent},
   {path:'forgot-password',component:ForgotPasswordComponent},
   {
-    path: 'faculty-dashboard', component: FacultyDashboardComponent,
+    path: 'faculty-dashboard',canActivate:[authfacultyGuard], component: FacultyDashboardComponent,
+    
     children: [
       { path: 'Rformfaculty', component: RformFacultyComponent },
       {

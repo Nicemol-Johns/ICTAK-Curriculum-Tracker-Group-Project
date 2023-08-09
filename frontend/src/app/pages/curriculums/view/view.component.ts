@@ -21,7 +21,7 @@ export class ViewComponent implements OnInit {
   isEditing = false;
   changeText=false;
   message = '';
-
+  Reqname = '';
   messages:any[] = [];
   messages_unsorted:any[] = []
   facultymessages:any[] = [];
@@ -82,7 +82,8 @@ export class ViewComponent implements OnInit {
     const newMessage:AdminMessage = {
       sender : "Admin",
       content:this.message,
-      recipient:this.Fname[0],
+      recipient:this.Fname[0].toLowerCase(),
+      requirementName:this.Reqname,
       timestamp:new Date()
     };
     console.log(newMessage)
@@ -102,6 +103,7 @@ export class ViewComponent implements OnInit {
   }
 
   ngOnInit():void{
+    this.Reqname = this.chats.getReqName()
     const id=this.activatedRoute.snapshot.paramMap.get('id');
     this.api.getDetails(id).subscribe((res:any)=>{
       console.log('calling service')

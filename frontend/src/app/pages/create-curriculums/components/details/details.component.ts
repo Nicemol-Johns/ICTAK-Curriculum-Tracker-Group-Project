@@ -13,7 +13,7 @@ import { FetchRequirementsFacultyDashboardService } from 'src/app/fetch-requirem
 export class DetailsComponent {
 
   constructor(private queries:CurriculumQueriesService,private router:Router,private fetch:FetchRequirementsFacultyDashboardService,private chats:ChatServiceService){}
- 
+  enableSubmit:boolean = true;
   fetchName = this.chats.getUser()
 
   curriculum={
@@ -45,6 +45,7 @@ export class DetailsComponent {
         console.log('success');
         alert('Added successfully')
         this.router.navigate(['/faculty-dashboard/Rformfaculty'])
+        this.enableSubmit = false;
       }
     );
   }

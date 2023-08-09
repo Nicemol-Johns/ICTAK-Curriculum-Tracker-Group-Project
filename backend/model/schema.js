@@ -105,7 +105,8 @@ const RequirementSchema=mongoose.Schema({
         type:Number,
         required:true
     },
-    referenceLink:String
+    referenceLink:String,
+    referenceLinkID:String
 })
 
 

@@ -43,7 +43,8 @@ export class CurriculumViewComponent {
     trainingArea:'',
     institution:'',
     category:'',
-    trainingHours:''
+    trainingHours:'',
+    referenceLink:''
   };
 
   Edit(){
@@ -101,8 +102,9 @@ export class CurriculumViewComponent {
       this.data.institution = res.data.institution;
       this.data.category = res.data.category;
       this.data.trainingHours = res.data.trainingHours;
+      this.data.referenceLink = res.data.referenceLink
       console.log('approvedStatus:', this.data.approvedStatus);
-      
+
       this.chats_backup.getAllMessages(this.data.requirementName).subscribe((messages: any[]) => {
         this.facultymessages = messages[0];
         this.adminMessages = messages[1];

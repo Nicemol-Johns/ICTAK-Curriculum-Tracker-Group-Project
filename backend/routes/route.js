@@ -151,6 +151,7 @@ router.post('/rform', upload.array('files'),async (req, res) => {
       }) 
       const uploadFiles = []
       let webViewLink;
+      let fileId;
        // const file = req.files
         for (const file of Files){
           console.log("File",file)
@@ -166,7 +167,8 @@ router.post('/rform', upload.array('files'),async (req, res) => {
               body:fs.createReadStream(file.path)
             }
           })
-          const fileId = response.data.id; 
+          fileId = response.data.id; 
+          console.log(fileId)
           webViewLink = `https://drive.google.com/file/d/${fileId}/view`;
         }
         const {requirementName, trainingArea, institution, category, trainingHours, referenceLink } = req.body
@@ -176,7 +178,8 @@ router.post('/rform', upload.array('files'),async (req, res) => {
           institution:institution,
           category:category,
           trainingHours:trainingHours,
-          referenceLink:webViewLink
+          referenceLink:webViewLink,
+          referenceLinkID:fileId
         })
 
     const createdRequirement = await newRequirement.save()

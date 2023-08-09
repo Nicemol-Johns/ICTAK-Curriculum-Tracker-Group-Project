@@ -55,10 +55,10 @@ export class ChatsBackendServicesService {
   //   }
   // }
 
-    getAllMessages(){  //Get messages for faculty Dashboard
+    getAllMessages(requirementname:any){  //Get messages for faculty Dashboard
       const facultyname = this.chats.getUser();
       //const collectionSuffix = "s"
-      const reqname = this.chats.getReqname();
+      const reqname =requirementname
       const facultyName = facultyname.toLowerCase();
       //const facultyName = tempname.concat(collectionSuffix)
       console.log(`This is the service file: ${facultyName}`)

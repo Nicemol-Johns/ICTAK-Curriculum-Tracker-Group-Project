@@ -15,7 +15,11 @@ import { DatePipe } from '@angular/common';
 })
 export class CreateCurriculumsComponent implements OnInit{
 
-  constructor(private router:Router,private chats:ChatServiceService,private chats_backup:ChatsBackendServicesService,private http:HttpClient,private datePipe: DatePipe){}
+  constructor(private router:Router,
+    private chats:ChatServiceService,
+    private chats_backup:ChatsBackendServicesService,
+    private http:HttpClient,
+    private datePipe: DatePipe){}
 
   reqname = '';
   username_chat = '';
@@ -34,7 +38,7 @@ export class CreateCurriculumsComponent implements OnInit{
     // this.chats_backup.getAllMessagesAdmin().subscribe((response: any) => {
     //   this.adminMessages = response.messages;
     // });
-    this.chats_backup.getAllMessages().subscribe((messages: any[]) => {
+    this.chats_backup.getAllMessages(this.chats.getReqname()).subscribe((messages: any[]) => {
       this.facultymessages = messages[0];
       this.adminMessages = messages[1];
       this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
@@ -72,7 +76,7 @@ export class CreateCurriculumsComponent implements OnInit{
   onSubmit(){
 
     const newMessage: Message = {
-      sender: this.username_chat, 
+      sender: this.username_chat.toLowerCase(), 
       content: this.message,
       requirementName:this.reqname,
       timestamp: new Date(),
@@ -80,7 +84,7 @@ export class CreateCurriculumsComponent implements OnInit{
     
     this.chats_backup.getNewMessage(newMessage).subscribe(res=>{
       console.log(res.message)
-      this.chats_backup.getAllMessages().subscribe((messages: any[]) => {
+      this.chats_backup.getAllMessages(this.chats.getReqname()).subscribe((messages: any[]) => {
         this.facultymessages = messages[0];
         this.adminMessages = messages[1];
         this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
@@ -96,6 +100,7 @@ export class CreateCurriculumsComponent implements OnInit{
     // console.log(this.adminMessages)
     this.message = '';
   }
+
 
 
 }

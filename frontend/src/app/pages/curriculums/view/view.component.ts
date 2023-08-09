@@ -82,7 +82,7 @@ export class ViewComponent implements OnInit {
     const newMessage:AdminMessage = {
       sender : "Admin",
       content:this.message,
-      recipient:this.Fname[0],
+      recipient:this.Fname[0].toLowerCase(),
       requirementName:this.Reqname,
       timestamp:new Date()
     };

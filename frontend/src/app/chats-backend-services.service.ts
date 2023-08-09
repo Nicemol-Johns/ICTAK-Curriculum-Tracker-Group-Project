@@ -57,10 +57,10 @@ export class ChatsBackendServicesService {
 
     getAllMessages(){  //Get messages for faculty Dashboard
       const facultyname = this.chats.getUser();
-      const collectionSuffix = "s"
+      //const collectionSuffix = "s"
       const reqname = this.chats.getReqname();
-      const tempname = facultyname.toLowerCase();
-      const facultyName = tempname.concat(collectionSuffix)
+      const facultyName = facultyname.toLowerCase();
+      //const facultyName = tempname.concat(collectionSuffix)
       console.log(`This is the service file: ${facultyName}`)
       console.log(facultyName,reqname)
       const facultyMessages$ = this.http.get<any>(`http://localhost:3000/curriculum-tracker/messages-all?facultyname=${facultyName}&requirementName=${reqname}`)
@@ -94,10 +94,10 @@ export class ChatsBackendServicesService {
     
     getAllMessagesAdmin(){
       const facultyname = this.chats.getChatRecipientAdmin();
-      const collectionSuffix = "s"
-      const tempname = facultyname.toLowerCase();
+     // const collectionSuffix = "s"
+      const facultyName = facultyname.toLowerCase();
       const reqname = this.chats.getReqName();
-      const facultyName = tempname.concat(collectionSuffix)
+     // const facultyName = tempname.concat(collectionSuffix)
       console.log(`This is the service file: ${facultyName}`)
       console.log(facultyName,reqname)
       //return this.http.get(`http://localhost:3000/curriculum-tracker/messages-all-admin/${facultyName}`)

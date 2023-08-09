@@ -183,9 +183,9 @@ async function findCollectionWithFacultyNameChatDB(facultyName,requirementName) 
         console.log(facultyName)
       const collections = await chats.db.listCollections().toArray();
       console.log("Collections",collections)
-      const matchingCollection = collections.find((collection) => collection.name === facultyName);
-      console.log("matching Collection",matchingCollection)
-      const facultyChatModel = chats.model(matchingCollection.name, chatUsersSchema);       
+    //   const matchingCollection = collections.find((collection) => collection.name === facultyName);
+    //   console.log("matching Collection",matchingCollection)
+      const facultyChatModel = chats.model(facultyName.name, chatAdminSchema,facultyName);       
       const messages = await facultyChatModel.find({requirementName:requirementName});
       //console.log("Messages",Messages)
       console.log(messages)
@@ -200,9 +200,9 @@ async function findCollectionWithFacultyNameAdminDB(facultyName,requirementName)
         console.log(facultyName)
       const collections = await admin.db.listCollections().toArray();
       console.log(collections)
-      const matchingCollection = collections.find((collection) => collection.name === facultyName);
-      console.log(matchingCollection)
-      const adminChatModel = admin.model(matchingCollection.name, chatAdminSchema);       
+    //   const matchingCollection = collections.find((collection) => collection.name === facultyName);
+    //   console.log(matchingCollection)
+      const adminChatModel = admin.model(facultyName.name, chatAdminSchema,facultyName);       
       const messages = await adminChatModel.find({requirementName:requirementName});
       //const Messages = [...messages]
       //console.log("Messages",Messages)

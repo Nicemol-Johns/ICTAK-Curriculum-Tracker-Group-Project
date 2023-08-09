@@ -268,7 +268,7 @@ router.post('/send-message-faculty', async (req, res) => {
     console.log(`Req: ${sender} ${content} ${requirementName} ${timestamp}`)
     const collectionName = sender; // The collection name will be the same as the sender's username
     console.log(`collection name: ${collectionName}`)
-    const userChatModel = chats.model(collectionName, chatUsersSchema);
+    const userChatModel = chats.model(collectionName, chatUsersSchema,collectionName);
     console.log(`Model: ${userChatModel}`)
 
     // Create a new document with the message data
@@ -295,7 +295,7 @@ router.post('/send-message-admin', async (req, res) => {
     console.log(`Req: ${sender} ${content} ${recipient} ${requirementName} ${timestamp}`)
     const newCollection = recipient; // The collection name will be the same as the sender's username
     console.log(`collection name: ${newCollection}`)
-    const adminChatModel = admin.model(newCollection, chatAdminSchema);
+    const adminChatModel = admin.model(newCollection, chatAdminSchema,newCollection);
     console.log(`Model: ${adminChatModel}`)
 
     // Create a new document with the message data

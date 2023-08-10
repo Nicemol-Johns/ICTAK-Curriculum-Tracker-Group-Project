@@ -61,6 +61,8 @@ const CurriculumSavedSchema = mongoose.Schema({
         type:Number,
         required:true
     },
+    referenceLink:String,
+    referenceLinkID:String
 
 })
 const CurriculumSchema = mongoose.Schema({

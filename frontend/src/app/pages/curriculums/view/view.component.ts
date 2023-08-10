@@ -6,6 +6,7 @@ import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 import { AdminMessage } from 'src/assets/AdminMessage.model';
 import { Message } from 'src/assets/Message.model';
 import { DatePipe } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-view',
@@ -16,7 +17,13 @@ export class ViewComponent implements OnInit {
   Fname: string[] = [];
   faculty = ''
 
-  constructor(private api:CurriculumQueriesService,private activatedRoute:ActivatedRoute,private router:Router,private chats:ChatServiceService,private datePipe: DatePipe,private chats_backup:ChatsBackendServicesService){}
+  constructor(private api:CurriculumQueriesService,
+    private activatedRoute:ActivatedRoute,
+    private router:Router,
+    private chats:ChatServiceService,
+    private datePipe: DatePipe,
+    private chats_backup:ChatsBackendServicesService,
+    private sanitizer: DomSanitizer){}
 
   isEditing = false;
   changeText=false;
@@ -26,6 +33,8 @@ export class ViewComponent implements OnInit {
   messages_unsorted:any[] = []
   facultymessages:any[] = [];
   adminMessages:any[] = [];
+
+  isReferenceLinkAvailable = false;
 
   data = {
     id:'',
@@ -37,7 +46,9 @@ export class ViewComponent implements OnInit {
     trainingArea:'',
     institution:'',
     category:'',
-    trainingHours:''
+    trainingHours:'',
+    referenceLink:'',
+    referenceLinkID:''
   };
 
   Edit(){
@@ -117,8 +128,12 @@ export class ViewComponent implements OnInit {
       this.data.institution = res.data.institution;
       this.data.category = res.data.category;
       this.data.trainingHours = res.data.trainingHours;
+      this.data.referenceLink = res.data.referenceLink;
+      this.data.referenceLinkID =res.data.referenceLinkID
       console.log(`Admin communicates with faculty`,this.data.name)
+      this.isReferenceLinkAvailable = !!res.data.referenceLinkID;
     })
+
      // this.Fname = this.data.name.split(' ')
     // console.log(`Messages for admin dashboard:`)
     // const facultyName = this.Fname[0]; // Assuming Fname contains the faculty name
@@ -157,7 +172,18 @@ export class ViewComponent implements OnInit {
         }
       )
     }
+
+    formURL(referenceLinkID: string): SafeResourceUrl {
+      console.log(referenceLinkID)
+      const url = `https://drive.google.com/file/d/${referenceLinkID}/preview`;
+      console.log(url)
+      return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    
+    }
+
   }
+
+  
 
 
 

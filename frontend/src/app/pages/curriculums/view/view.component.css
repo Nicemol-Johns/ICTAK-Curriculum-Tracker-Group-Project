@@ -44,3 +44,12 @@
 .approve{
   margin-top: 410px;
 }
+.page{
+  margin-left: 20px;
+}
+#approve{
+  margin-left: 250px;
+}
+.col{
+  border: 1px solid rgb(0, 153, 255);
+}

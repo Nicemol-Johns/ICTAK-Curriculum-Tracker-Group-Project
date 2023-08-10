@@ -97,6 +97,7 @@
 
   
 
+  
     <div class="col-lg-3">
         <div class="accordion accordion-flush" id="Chats">
           <div class="accordion-item bg-primary-subtle">
@@ -122,8 +123,39 @@
       </div>
     </div>
 
+<!--Second Column-->
+<div class="page container-fluid row-lg-3 row-md  text-justify">
+  <label for="">Click here to view the description:</label><br>
+  <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#reg-modal">Desciption</button>
+  <div class="d-flex mt-3 justify-content-start">
+    <button  class="btn btn-primary mr-5" (click)="Edit()">Edit</button>
+    <button  class="btn btn-primary mr-5" (click)="Save()" >Save</button>
+    <button id="approve" class="btn btn-primary mr-5 px-5"  (click)="approve()" >Approve</button>
 
+  </div>
+  <!-- <div class="col">
+        
+  </div> -->
+  </div>    
+  <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" 
+     aria-hidded="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Description</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <textarea class="form-control" id="description" [disabled]="!changeText" rows="8" name="description" [(ngModel)]="data.description"></textarea>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+              <button type="button" (click)="EditText()" class="btn btn-primary">Edit</button> 
+              <button type="button" (click)="SaveText()"class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+  </div>
 </div>
-
+</div>
+<app-footer-short></app-footer-short>
 <router-outlet></router-outlet>
    

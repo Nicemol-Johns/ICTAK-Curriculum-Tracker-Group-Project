@@ -1,19 +1,17 @@
 .card_container{
-    width:fit-content;
+    width:60%;
     text-align: center;
-    
-    
-    /* margin-left:150px;
-    margin-right:150px; */
+    margin-left:auto;
+    margin-right:auto;
+    padding-bottom: 30px;
 }
 .card{
-    float: left;
+    width:300px;
     text-align: center;
-    margin-right: 20px;
-    margin-left: 20px;
-    /* margin-left: auto;
-    margin-right: auto; */
-    /* padding-right: 30px; */
+    /* margin-right: 20px;
+    margin-left: 20px; */
+    margin-left: auto;
+    margin-right: auto;
 }
 #faculty{
     font-family:sans-serif;

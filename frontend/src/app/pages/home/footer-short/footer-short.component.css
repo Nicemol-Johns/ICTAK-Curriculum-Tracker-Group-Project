@@ -1,4 +1,12 @@
 .footer{
-    position:fixed;
-    bottom:0;
+    /* width: 100%;
+    position:relative;
+    padding-bottom: 0px;
+    bottom:0; */
+position:fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
 }

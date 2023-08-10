@@ -6,6 +6,8 @@ import { ChatServiceService } from 'src/app/chat-service.service';
 import { ChatsBackendServicesService } from 'src/app/chats-backend-services.service';
 import { CurriculumQueriesService } from 'src/app/curriculum-queries.service';
 import { Message } from 'src/assets/Message.model';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-curriculum-view',
@@ -19,7 +21,8 @@ export class CurriculumViewComponent {
     private chats:ChatServiceService,
     private chats_backup:ChatsBackendServicesService,
     private http:HttpClient,
-    private datePipe: DatePipe){}
+    private datePipe: DatePipe,
+    private sanitizer: DomSanitizer){}
 
   isEditing = false;
   changeText=false;
@@ -32,6 +35,7 @@ export class CurriculumViewComponent {
   facultymessages:any[] = [];
   adminMessages:any[] = [];
 
+  isReferenceLinkAvailable = false;
   
   data = {
     id:'',
@@ -44,7 +48,8 @@ export class CurriculumViewComponent {
     institution:'',
     category:'',
     trainingHours:'',
-    referenceLink:''
+    referenceLink:'',
+    referenceLinkID:''
   };
 
   Edit(){
@@ -85,6 +90,14 @@ export class CurriculumViewComponent {
     }
   }
 
+  formURL(referenceLinkID: string): SafeResourceUrl {
+    console.log(referenceLinkID)
+    const url = `https://drive.google.com/file/d/${referenceLinkID}/preview`;
+    console.log(url)
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  
+  }
+
   ngOnInit():void{
     //this.reqname = this.chats.getReqname()
     console.log(this.reqname)
@@ -102,8 +115,11 @@ export class CurriculumViewComponent {
       this.data.institution = res.data.institution;
       this.data.category = res.data.category;
       this.data.trainingHours = res.data.trainingHours;
-      this.data.referenceLink = res.data.referenceLink
+      this.data.referenceLink = res.data.referenceLink;
+      this.data.referenceLinkID =res.data.referenceLinkID
       console.log('approvedStatus:', this.data.approvedStatus);
+
+      this.isReferenceLinkAvailable = !!this.data.referenceLinkID;
 
       this.chats_backup.getAllMessages(this.data.requirementName).subscribe((messages: any[]) => {
         this.facultymessages = messages[0];
@@ -115,15 +131,15 @@ export class CurriculumViewComponent {
         //console.log('Admin Messages:', this.adminMessages);
       });
     })
-    this.chats_backup.getAllMessages(this.data.requirementName).subscribe((messages: any[]) => {
-      this.facultymessages = messages[0];
-      this.adminMessages = messages[1];
-      this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
-      this.messages = this.messages_unsorted.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
-      console.log('Messages:', this.messages);
-      //console.log('Faculty Messages:', this.facultymessages);
-      //console.log('Admin Messages:', this.adminMessages);
-    });
+    // this.chats_backup.getAllMessages(this.data.requirementName).subscribe((messages: any[]) => {
+    //   this.facultymessages = messages[0];
+    //   this.adminMessages = messages[1];
+    //   this.messages_unsorted = [...this.facultymessages, ...this.adminMessages];
+    //   this.messages = this.messages_unsorted.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+    //   console.log('Messages:', this.messages);
+    //   //console.log('Faculty Messages:', this.facultymessages);
+    //   //console.log('Admin Messages:', this.adminMessages);
+    // });
 
 }
 

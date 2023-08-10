@@ -41,9 +41,8 @@
       </div>
     <!--Second Column-->
       <div class="page container-fluid col-lg-6 col-md text-justify">
-        <label for="">Click here to view the description:</label><br>
-        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#reg-modal">Desciption</button>
-        
+        <label for="">Click here:</label><br>
+        <button class="btn btn-outline-primary mr-3" data-bs-toggle="modal" data-bs-target="#reg-modal">Description</button>
             
             <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title"  aria-hidded="true">
                 <div class="modal-dialog modal-dialog-scrollable">
@@ -66,7 +65,25 @@
                </div>
             </div>
 
-            <div class="d-flex justify-content-end align-content-end">
+
+            <!-- <label for="">Click here to view the description:</label><br> -->
+            <button class="btn btn-outline-primary" [disabled]="!isReferenceLinkAvailable" data-bs-toggle="modal" data-bs-target="#ref-modal">References</button>
+            <div class="modal fade" id="ref-modal" tabindex="-1" aria-labelledby="modal-title"  aria-hidded="true">
+              <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                  
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">References</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                      <iframe [src]="formURL(data.referenceLinkID)" width="100%" height="600px" style="border:0;"></iframe>
+                    </div>
+                </div>
+             </div>
+          </div>
+
   
       </div>
   

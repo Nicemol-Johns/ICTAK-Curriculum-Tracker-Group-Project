@@ -78,9 +78,88 @@ router.post('/login', (req, res) => {
     }
     })
 
-    router.post('/curriculumform', async (req, res) => {
+    router.post('/curriculumform',upload.array('files'), async (req, res) => {
       try {
-        const newCurriculum = req.body;
+
+        console.log(req.body)
+  
+  
+       const Files = req.files
+  
+        const auth = new google.auth.GoogleAuth({
+          credentials,
+          scopes:['https://www.googleapis.com/auth/drive']
+        })
+  
+        const drive = google.drive({
+          version:'v3',
+          auth
+        }) 
+        const uploadFiles = []
+        let webViewLinkCurriculum;
+        let fileIdCurriculum;
+         // const file = req.files
+          for (const file of Files){
+            console.log("File",file)
+            console.log(file.originalname)
+            console.log(file.mimetype)
+            const response =  await drive.files.create({
+              requestBody:{
+                name:file.originalname,
+                mimetype:file.mimetype,
+                parents:['1td9NQOCq8DBbM6KUrNGJ98uYm16uJb5A']
+              },
+              media:{
+                body:fs.createReadStream(file.path)
+              }
+            })
+            console.log(response)
+            fileIdCurriculum = response.data.id; 
+            console.log(fileIdCurriculum)
+            webViewLinkCurriculum = `https://drive.google.com/file/d/${fileIdCurriculum}/view`;
+          }
+
+          const {s_no,name,description,approvedStatus,requirementName,trainingArea,institution,category,trainingHours} = req.body;
+          const newCurriculum = new curriculumSavedSchema({
+            s_no:s_no,
+            name:name,
+            description:description,
+            approvedStatus:approvedStatus,
+            requirementName:requirementName,
+            trainingArea:trainingArea,
+            institution:institution,
+            category:category,
+            trainingHours:trainingHours,
+            referenceLink:webViewLinkCurriculum,
+            referenceLinkID:fileIdCurriculum
+          })
+          // const {requirementName,
+          //    trainingArea, 
+          //    institution,
+          //    category,
+          //    trainingHours, referenceLink } = req.body
+    //       const newRequirement = new requirementSchema({
+    //         requirementName:requirementName,
+    //         trainingArea:trainingArea,
+    //         institution:institution,
+    //         category:category,
+    //         trainingHours:trainingHours,
+    //         referenceLink:webViewLink,
+    //         referenceLinkID:fileId
+    //       })
+  
+    //   const createdRequirement = await newRequirement.save()
+    //   console.log(createdRequirement)
+    //   res.status(201).json({ data: createdRequirement, message: 'Requirement created successfully'});
+    // } catch (error) {
+    //   res.status(500).json({ error: 'Failed to create requirement' });
+    // }
+
+
+
+
+   
+        //const newCurriculum = req.body;
         console.log(newCurriculum)
         const createdCurriculum = await curriculumSavedSchema(newCurriculum);
         createdCurriculum.save();   

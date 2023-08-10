@@ -20,7 +20,7 @@
                 <h6 class="card-text">Institution/Corporate office: {{form.institution}}</h6>
                 <h6 class="card-text">Category: {{form.category}}</h6>
                 <h6 class="card-text">No. of hours of training:{{form.trainingHours}}</h6>
-                <h6 *ngIf="form.referenceLink"><a [href]="form.referenceLink"><i style="font-size:15px; color:blue" class="fa">&#xf06e;</i></a></h6>
+                <h6 *ngIf="form.referenceLink"><a [href]="form.referenceLink"><i class="bi bi-filetype-pdf" style="font-size:1.5rem; color:dodgerblue" ></i></a></h6>
               </div>
             </div>
       </div>
@@ -38,34 +38,7 @@
       </div>
   
   </div>
-</div>
-<<<<<<< HEAD
-=======
-  <div class="container mt-5 px-2">
-    <div class="row">
-     <div class="col-3" *ngFor="let form of list | search: searchText ">
- 
-         <div class="card mb-4" style="width: 18rem;">
-             <div class="card-body">
-               <h5 class="card-title text-center">Requirement: {{form.requirementName}}</h5>
-               <h6 class="card-text">Training Area: {{form.trainingArea}}</h6>
-               <h6 class="card-text">Institution/Corporate office: {{form.institution}}</h6>
-               <h6 class="card-text">Category: {{form.category}}</h6>
-               <h6 class="card-text">No. of hours of training:{{form.trainingHours}}</h6>
-               <h6 *ngIf="form.referenceLink"><a [href]="form.referenceLink"><i class="bi bi-filetype-pdf" style="font-size:1.5rem; color:dodgerblue" ></i></a></h6>
-             
-               
-             
-             </div>
-           </div>
- 
-     </div>
- 
-    </div>
- 
- </div>
- 
->>>>>>> c4a3101989583470fd1d2945486a287976427aaa
+</div> 
 
 <app-footer-short></app-footer-short>
 <router-outlet></router-outlet>
